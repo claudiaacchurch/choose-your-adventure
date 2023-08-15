@@ -16,6 +16,7 @@ const GameController = {
     };
     chatGPTMessages.push(initialMessage);
     const response = await askGPT(chatGPTMessages);
+    chatGPTMessages.push(response)
     return response;
   },
 };
