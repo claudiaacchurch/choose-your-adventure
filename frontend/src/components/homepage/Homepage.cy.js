@@ -13,6 +13,6 @@ describe("HomePage", () => {
     })
     it("Shows the Genre buttons", () => {
         cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".genre").should("contain.text","Fantasy Noir Space")
+        cy.get(".genre").should("contain.text","FantasyNoirSpace")
     })
 })

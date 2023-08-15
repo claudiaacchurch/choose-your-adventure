@@ -1,4 +1,4 @@
-import Homepage from "./Homepage"
+import Homepage from "../homepage/Homepage"
 const navigate = () => {}
 
 describe("HomePage", () => {
