@@ -2,7 +2,6 @@ const askGPT = require("../../controllers/apiClient");
 
 describe("askGPT", () => {
   it.skip("initially returns a json response containing a setting and array of 3 actions", async () => {
-    // jest.setTimeout(10000);
     const response = await askGPT([
       {
         role: "system",
