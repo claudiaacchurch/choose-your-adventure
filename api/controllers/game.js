@@ -14,7 +14,6 @@ const GameController = {
         `One of these actions is fatal and ends the game. Never add other explanations. Don/’t refer to yourself.` +
         `Your responses are just in JSON format like this example: \n\n###\n\n {"setting":"setting description", "actions":["action 1", "action 2", "action 3"]}\n\n###\n\n`,
     };
-    console.log(initialMessage);
     chatGPTMessages.push(initialMessage);
     const response = await askGPT(chatGPTMessages);
     return response;
