@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const Genre = () => {
   const [genre, setGenre] = useState("");
-  const [scenario, setScenario] = useState("");
+  // const [scenario, setScenario] = useState("");
 
   const giveGenreValue = (e) => {
     const value = e.target.value;
@@ -12,17 +12,17 @@ const Genre = () => {
   };
 
   const apirequest = async () => {
-    fetch("/", {
+    console.log(genre);
+    fetch("/genre", {
       method: "post",
       body: genre,
     }).then(async (response) => {
       let data = await response.json();
-      setScenario(data.setting);
-      console.log(data.setting);
+      // setScenario(data.setting);
+      // console.log(data.setting);
 
-      console.log(data.actions[0]);
-      console.log(data.actions[1]);
-      console.log(data.a);
+      // console.log(data.actions[0]);
+      // console.log(data.actions[1]);
     });
   };
 
