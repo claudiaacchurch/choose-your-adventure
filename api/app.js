@@ -21,8 +21,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
+
+//route setup
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 app.get("/api/test", (req, res) => {
   res.json({ message: "Backend is running!" });
