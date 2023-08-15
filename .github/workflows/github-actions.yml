@@ -31,7 +31,7 @@ jobs:
         cd ./frontend && npm install
     
     - name: Test API
-      run: cd api && npm test --passWithNoTests
+      run: cd api && npm test
         
     - name: Test Frontend Unit
       env:
