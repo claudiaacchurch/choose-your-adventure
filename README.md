@@ -2,9 +2,24 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## To Get started:
+Install npm to the backend:
+~ cd api
+~ npm i
+
+Install npm to the backend:
+~ cd frontend
+~ npm i
+
+If you get critical message try running:
+~ npm audit fix --force
+
+*Make sure you have latest version of nvm and node installed.
+
 ## Available Scripts
 
 In the project directory, you can run:
+
 
 ### `npm start`
 
