@@ -3,18 +3,30 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## To Get started:
-Install npm to the backend:
-~ cd api
-~ npm i
+1. Install npm to the backend:
+  ~ cd api
+  ~ npm i
 
-Install npm to the backend:
-~ cd frontend
-~ npm i
+2. Install npm to the frontend:
+  ~ cd frontend
+  ~ npm i
 
-If you get critical message try running:
+3. Install Material UI:
+  ~ cd frontend
+  ~ npm install @material-ui/core
+
+*Make sure you have the latest version of nvm and node installed.
+  ~ npm install -g n 
+  ~ n latest
+You might need to install:
+(in the frontend) 
+  ~ npm install react-router-dom 
+  ~ npm install react-scripts@latest
+  
+
+
+If you get a critical message try running:
 ~ npm audit fix --force
-
-*Make sure you have latest version of nvm and node installed.
 
 ## Available Scripts
 
