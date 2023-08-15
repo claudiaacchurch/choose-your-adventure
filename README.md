@@ -4,24 +4,24 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## To Get started:
 1. Install npm to the backend:
-  ~ cd api
-  ~ npm i
+  cd api
+  npm i
 
 2. Install npm to the frontend:
-  ~ cd frontend
-  ~ npm i
+   cd frontend
+   npm i
 
-3. Install Material UI:
-  ~ cd frontend
-  ~ npm install @material-ui/core
+4. Install Material UI:
+   cd frontend
+   npm install @material-ui/core
 
 *Make sure you have the latest version of nvm and node installed.
-  ~ npm install -g n 
-  ~ n latest
+  npm install -g n 
+  n latest
 You might need to install:
 (in the frontend) 
-  ~ npm install react-router-dom 
-  ~ npm install react-scripts@latest
+  npm install react-router-dom 
+  npm install react-scripts@latest
   
 
 
