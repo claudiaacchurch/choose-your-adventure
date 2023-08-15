@@ -3,7 +3,9 @@ const askGPT = require("./apiClient");
 let chatGPTMessages = [];
 
 const GameController = {
-  StartGame: async (genre) => {
+  StartGame: async (req, res) => {
+    const genre = req.body;
+    console.log(req);
     const initialMessage = {
       role: "system",
       content:
@@ -16,7 +18,7 @@ const GameController = {
     };
     chatGPTMessages.push(initialMessage);
     const response = await askGPT(chatGPTMessages);
-    chatGPTMessages.push(response)
+    chatGPTMessages.push(response);
     return response;
   },
 };
