@@ -1,14 +1,9 @@
 import Homepage from "../homepage/Homepage"
 const navigate = () => {}
 
-describe("HomePage", () => {
-    it("Shows the title", () => {
+describe("Genre", () => {
+    it("Fantasy button mounts", () => {
         cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".title").should("contain.text","Infinity Trails")
-    })
-
-    it("Shows the introduction message", () => {
-        cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".intro").should("contain.text","Welcome to your next adventure")
+        cy.get(".fantasy-btn").should("contain.text","Fantasy")
     })
 })

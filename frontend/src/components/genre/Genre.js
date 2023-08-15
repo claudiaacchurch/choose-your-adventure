@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 const Genre = () => {
     return(
         <>
-            <Button variant="text" color="primary">
+            <Button className= "fantasy-btn" variant="text" color="primary">
             Fantasy
             </Button>
             <Button variant="text" color="primary">
