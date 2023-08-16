@@ -1,13 +1,16 @@
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Genre = () => {
   const [genre, setGenre] = useState("");
   // const [scenario, setScenario] = useState("");
 
-  const giveGenreValue = (e) => {
+  const giveGenreValue = async (e) => {
+    e.preventDefault();
     const value = e.target.value;
-    setGenre(value);
+    console.log("logging value", value);
+    await setGenre(value);
+    console.log("logging genre", genre);
     apirequest();
   };
 
@@ -15,9 +18,10 @@ const Genre = () => {
     console.log(genre);
     fetch("/genre", {
       method: "post",
-      body: genre,
+      body: JSON.stringify({ genre: genre }),
     }).then(async (response) => {
       let data = await response.json();
+      console.log(data);
       // setScenario(data.setting);
       // console.log(data.setting);
 
