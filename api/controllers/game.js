@@ -6,9 +6,9 @@ const GameController = {
   StartGame: async (req, res) => {
     // res.json({ message: "we successfully came to the controller" });
     chatGPTMessages.length = 0;
-    console.log("logging messages", chatGPTMessages);
+    // console.log("logging messages", chatGPTMessages);
     const genre = req.body.genre;
-    console.log("logging", req.body);
+    console.log("logging genre", genre);
     const initialMessage = {
       role: "system",
       content:
@@ -22,7 +22,7 @@ const GameController = {
     chatGPTMessages.push(initialMessage);
     const response = await askGPT(chatGPTMessages);
     chatGPTMessages.push(response);
-    console.log("logging more messages", chatGPTMessages);
+    // console.log("logging more messages", chatGPTMessages);
     return res.status(200).json({ response: response });
   },
 };

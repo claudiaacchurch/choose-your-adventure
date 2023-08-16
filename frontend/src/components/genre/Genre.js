@@ -1,32 +1,30 @@
 import Button from "@mui/material/Button";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-const Genre = () => {
+const Genre = ({ setScenario, setActions }) => {
   const [genre, setGenre] = useState("");
-  // const [scenario, setScenario] = useState("");
 
-  const giveGenreValue = async (e) => {
+  const giveGenreValue = (e) => {
     e.preventDefault();
-    const value = e.target.value;
-    console.log("logging value", value);
-    await setGenre(value);
-    console.log("logging genre", genre);
-    apirequest();
+    setGenre(e.target.value);
   };
+
+  useEffect(() => {
+    if (genre !== "") {
+      apirequest();
+    }
+  }, [genre]);
 
   const apirequest = async () => {
     console.log(genre);
     fetch("/genre", {
       method: "post",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre }),
     }).then(async (response) => {
       let data = await response.json();
-      console.log(data);
-      // setScenario(data.setting);
-      // console.log(data.setting);
-
-      // console.log(data.actions[0]);
-      // console.log(data.actions[1]);
+      setScenario(data.setting);
+      setActions(data.actions);
     });
   };
 
@@ -41,10 +39,22 @@ const Genre = () => {
       >
         Fantasy
       </Button>
-      <Button variant="text" color="primary">
+      <Button
+        className="noir-btn"
+        variant="text"
+        color="primary"
+        onClick={giveGenreValue}
+        value="noir"
+      >
         Noir
       </Button>
-      <Button variant="text" color="primary">
+      <Button
+        className="space-btn"
+        variant="text"
+        color="primary"
+        onClick={giveGenreValue}
+        value="space"
+      >
         Space
       </Button>
     </>
