@@ -18,7 +18,9 @@ const GameController = {
     };
     chatGPTMessages.push(initialMessage);
     const response = await askGPT(chatGPTMessages);
-    chatGPTMessages.push(response);
+    const chatResponse = {"role": "assistant", "content": JSON.stringify(response)}
+    chatGPTMessages.push(chatResponse);
+    console.log("logging messages", chatGPTMessages)
     return res.status(200).json({ response: response });
   },
 
@@ -30,8 +32,9 @@ const GameController = {
     };
     chatGPTMessages.push(nextStep);
     const response = await askGPT(chatGPTMessages);
-    chatGPTMessages.push(response);
-    return response;
+    const chatResponse = {"role": "assistant", "content": JSON.stringify(response)}
+    chatGPTMessages.push(chatResponse);
+    return res.status(200).json({ response: response });
   }
   
 };
