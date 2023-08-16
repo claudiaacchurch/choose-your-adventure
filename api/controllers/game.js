@@ -25,6 +25,19 @@ const GameController = {
     // console.log("logging more messages", chatGPTMessages);
     return res.status(200).json({ response: response });
   },
+
+  MakeAction: async (req, res) => {
+    const action = req.body.action;
+    const nextStep = {
+      role: "user",
+      content: action
+    };
+    chatGPTMessages.push(nextStep);
+    const response = await askGPT(chatGPTMessages);
+    chatGPTMessages.push(response);
+    return response;
+  }
+  
 };
 
 module.exports = GameController;
