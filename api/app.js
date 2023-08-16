@@ -4,7 +4,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const cors = require("cors");
-
+const bp = require("body-parser");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -19,10 +19,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(bp.json());
+app.use(bp.urlencoded({ extended: true }));
 
 app.use(cors());
+
+//route setup
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 app.get("/api/test", (req, res) => {
   res.json({ message: "Backend is running!" });
