@@ -3,6 +3,7 @@ var router = express.Router();
 const GameController = require("../controllers/game");
 
 
-router.post("/", GameController.startGame);
+router.post("/", GameController.StartGame);
+router.post("/game", GameController.MakeAction);
 
 module.exports = router;

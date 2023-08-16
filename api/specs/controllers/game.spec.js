@@ -1,5 +1,6 @@
 const GameController = require("../../controllers/game");
 const askGPT = require("../../controllers/apiClient");
+const app = require("../../app")
 jest.mock("../../controllers/apiClient");
 
 describe("GameController", () => {
@@ -17,6 +18,21 @@ describe("GameController", () => {
     const result = await GameController.StartGame("fantasy");
     expect(result).toEqual(mockResponse);
   });
+
+  test("MakeAction selects an action and sends it to api client as the user and returns three more choices", async () => {
+    const mockResponse1 = {
+      setting:
+        "You are in a dark hallway",
+      actions: [
+        "Turn left.",
+        "Turn right.",
+        "Go outside.",
+      ],
+    };
+    const action = "Explore deeper into the forest."
+    askGPT.mockResolvedValue(mockResponse1); 
+    const secondResult = await GameController.MakeAction({body: {action: action}});
+    expect(secondResult).toEqual(mockResponse1)
+  })
 });
-// testing startGame function of GameController
-// when given a genre,
+
