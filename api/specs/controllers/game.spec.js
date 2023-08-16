@@ -2,6 +2,7 @@ const GameController = require("../../controllers/game");
 const askGPT = require("../../controllers/apiClient");
 const app = require("../../app")
 jest.mock("../../controllers/apiClient");
+const request = require("supertest");
 
 describe("GameController", () => {
   test("startGame sends genre specific messages array to apiClient and returns a json response message", async () => {
@@ -15,8 +16,11 @@ describe("GameController", () => {
       ],
     };
     askGPT.mockResolvedValue(mockResponse);
-    const result = await GameController.StartGame("fantasy");
-    expect(result).toEqual(mockResponse);
+    // const result = await GameController.StartGame("fantasy");
+    let response = await request(app)
+      .post("/genre")
+      .send({genre: "fantasy"})
+    expect(JSON.parse(response.text).response).toEqual(mockResponse);
   });
 
   test("MakeAction selects an action and sends it to api client as the user and returns three more choices", async () => {

@@ -18,7 +18,8 @@
     "http-errors": "~1.6.3",
     "jade": "^0.31.2",
     "morgan": "~1.9.1",
-    "openai": "^3.3.0"
+    "openai": "^3.3.0",
+    "supertest": "^6.3.3"
   },
   "devDependencies": {
     "cypress": "^4.2.0",
