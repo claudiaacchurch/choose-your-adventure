@@ -1,8 +1,10 @@
 import Button from "@mui/material/Button";
 import React, { useState, useNavigate, useEffect } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Genre = ({ navigate, setScenario, setActions  }) => {
   const [genre, setGenre] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const giveGenreValue = (e) => {
     e.preventDefault();
@@ -11,6 +13,7 @@ const Genre = ({ navigate, setScenario, setActions  }) => {
 
   useEffect(() => {
     if (genre !== "") {
+      setLoading(true);
       apirequest();
     }
   }, [genre]);
@@ -24,39 +27,53 @@ const Genre = ({ navigate, setScenario, setActions  }) => {
       let data = await response.json();
       setScenario(data.response.setting);
       setActions(data.response.actions);
+      setLoading(false);
     });
     navigate('/action')
+
   };
 
   return (
     <>
-      <Button
-        className="fantasy-btn"
-        variant="text"
-        color="primary"
-        onClick={giveGenreValue}
-        value="fantasy"
-      >
-        Fantasy
-      </Button>
-      <Button
-        className="noir-btn"
-        variant="text"
-        color="primary"
-        onClick={giveGenreValue}
-        value="noir"
-      >
-        Noir
-      </Button>
-      <Button
-        className="space-btn"
-        variant="text"
-        color="primary"
-        onClick={giveGenreValue}
-        value="space"
-      >
-        Space
-      </Button>
+    {loading ? 
+      <div>
+        <ClipLoader
+        color="black"
+        loading={loading}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader" />  
+      </div> :
+      <div>
+        <Button
+          className="fantasy-btn"
+          variant="text"
+          color="primary"
+          onClick={giveGenreValue}
+          value="fantasy"
+        >
+          Fantasy
+        </Button>
+        <Button
+          className="noir-btn"
+          variant="text"
+          color="primary"
+          onClick={giveGenreValue}
+          value="noir"
+        >
+          Noir
+        </Button>
+        <Button
+          className="space-btn"
+          variant="text"
+          color="primary"
+          onClick={giveGenreValue}
+          value="space"
+        >
+          Space
+        </Button>
+      </div>
+    } 
     </>
   );
 };
