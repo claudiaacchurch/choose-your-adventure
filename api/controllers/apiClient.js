@@ -6,7 +6,6 @@ const configuration = new Configuration({
 
 const askGPT = async (messages) => {
   const openai = new OpenAIApi(configuration);
-  console.log(messages);
   const chatCompletion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: messages,
