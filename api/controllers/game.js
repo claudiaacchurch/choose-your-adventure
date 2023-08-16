@@ -20,7 +20,6 @@ const GameController = {
     const response = await askGPT(chatGPTMessages);
     const chatResponse = {"role": "assistant", "content": JSON.stringify(response)}
     chatGPTMessages.push(chatResponse);
-    console.log("logging messages", chatGPTMessages)
     return res.status(200).json({ response: response });
   },
 
