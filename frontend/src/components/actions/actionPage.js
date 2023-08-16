@@ -9,8 +9,6 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
   const selectAction = (e) => {
     e.preventDefault();
     setSelectedAction(e.target.value);
-    console.log("value",e.target.value);
-    console.log("state1",selectedAction);
   };
 
   useEffect(() => {
