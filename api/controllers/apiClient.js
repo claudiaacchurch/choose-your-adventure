@@ -9,7 +9,7 @@ const askGPT = async (messages) => {
   const chatCompletion = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages: messages,
-    temperature: 0.7,
+    temperature: 1,
   });
   const response = chatCompletion.data.choices[0].message;
   const content = response.content;
