@@ -1,6 +1,6 @@
 import Genre from "../genre/Genre";
 
-const Homepage = ({ setScenario, setActions }) => {
+const Homepage = ({ setScenario, setActions, navigate }) => {
   return (
     <>
       <h3 className="title"> Infinity Trails</h3>
@@ -8,7 +8,7 @@ const Homepage = ({ setScenario, setActions }) => {
         <p>Welcome to your next adventure</p>
       </div>
       <div className="genre">
-        <Genre setScenario={setScenario} setActions={setActions} />
+        <Genre setScenario={setScenario} setActions={setActions} navigate={navigate}/>
       </div>
     </>
   );
