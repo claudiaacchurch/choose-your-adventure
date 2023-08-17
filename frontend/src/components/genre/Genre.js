@@ -40,7 +40,7 @@ const Genre = ({ navigate, setScenario, setActions  }) => {
         <ClipLoader
         color="black"
         loading={loading}
-        size={150}
+        size={25}
         aria-label="Loading Spinner"
         data-testid="loader" />  
       </div> :

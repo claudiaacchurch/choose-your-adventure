@@ -35,8 +35,10 @@ describe("GameController", () => {
     };
     const action = "Explore deeper into the forest."
     askGPT.mockResolvedValue(mockResponse1); 
-    const secondResult = await GameController.MakeAction({body: {action: action}});
-    expect(secondResult).toEqual(mockResponse1)
+    let response = await request(app)
+      .post("/action")
+      .send({action: action})
+    expect(JSON.parse(response.text).response).toEqual(mockResponse1)
   })
 });
 

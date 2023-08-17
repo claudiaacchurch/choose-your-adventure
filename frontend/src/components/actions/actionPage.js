@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
 import React, { useState, useEffect } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
   const[selectedAction, setSelectedAction] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  console.log("state0",selectedAction);
+  console.log("actions",selectedAction);
 
   const selectAction = (e) => {
     e.preventDefault();
@@ -20,6 +20,15 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
     }
   }, [selectedAction]);
 
+  useEffect(() => {
+    if (scenario === "") {
+      setLoading(true);
+    }
+    else {
+      setLoading(false);
+    }
+  }, [scenario]);
+  
   const actionApirequest = async () => {
     fetch("http://localhost:8080/action", {
       method: "post",
@@ -35,21 +44,22 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
 
     return (
     <>
-    {loading || selectedAction === "" ? 
+    {loading ? 
     <div>
-      <ClipLoader
+      <PacmanLoader
       color="black"
       loading={loading}
-      size={150}
-      aria-label="Loading Spinner"
-      data-testid="loader" />  
+      size={25} 
+      speedMultiplier={2}
+      aria-label="Pacman Spinner"
+      className="loader" />  
     </div> : 
       <div>
         <div className="scenario">
           <p>{scenario}</p>
         </div>
         <Button
-          className="fantasy-btn"
+          className="action1-btn"
           variant="text"
           color="primary"
           value={`${actions[0]}`}
@@ -58,7 +68,7 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
           {actions[0]}
         </Button>
         <Button
-          className="noir-btn"
+          className="action2-btn"
           variant="text"
           color="primary"
           value={`${actions[1]}`}
@@ -67,7 +77,7 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
           {actions[1]}
         </Button>
         <Button
-          className="space-btn"
+          className="action3-btn"
           variant="text"
           color="primary"
           value={`${actions[2]}`}
