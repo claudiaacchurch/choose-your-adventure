@@ -1,8 +1,8 @@
 import Button from "@mui/material/Button";
-import React, { useState, useEffect } from "react";
+import React, { useNavigate, useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
+const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, status, navigate, setGenre}) => {
   const[selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -38,9 +38,19 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
       let data = await response.json();
       setScenario(data.response.setting);
       setActions(data.response.actions);
+      setStatus(data.response.status);
       setLoading(false);
     });
   };
+
+  const startAgain = () => {
+    setStatus("Continue")
+    setSelectedAction("")
+    // setScenario("")
+    // setActions([])
+    // setGenre("")
+    navigate("/")
+  }
 
     return (
     <>
@@ -58,33 +68,47 @@ const ActionPage = ({ setScenario, setActions, actions, scenario }) => {
         <div className="scenario">
           <p>{scenario}</p>
         </div>
-        <Button
-          className="action1-btn"
-          variant="text"
-          color="primary"
-          value={`${actions[0]}`}
-          onClick={selectAction}
-        >
-          {actions[0]}
-        </Button>
-        <Button
-          className="action2-btn"
-          variant="text"
-          color="primary"
-          value={`${actions[1]}`}
-          onClick={selectAction}
-        >
-          {actions[1]}
-        </Button>
-        <Button
-          className="action3-btn"
-          variant="text"
-          color="primary"
-          value={`${actions[2]}`}
-          onClick={selectAction}
-        >
-          {actions[2]}
-        </Button> 
+        {status==="Continue" ?
+          <div>
+            <Button
+              className="action1-btn"
+              variant="text"
+              color="primary"
+              value={`${actions[0]}`}
+              onClick={selectAction}
+            >
+              {actions[0]}
+            </Button>
+            <Button
+              className="action2-btn"
+              variant="text"
+              color="primary"
+              value={`${actions[1]}`}
+              onClick={selectAction}
+            >
+              {actions[1]}
+            </Button>
+            <Button
+              className="action3-btn"
+              variant="text"
+              color="primary"
+              value={`${actions[2]}`}
+              onClick={selectAction}
+            >
+              {actions[2]}
+            </Button> 
+          </div> :
+          <div>
+            <Button
+              className="start-again-btn"
+              variant="text"
+              color="primary"
+              onClick={startAgain}
+            >
+              Start Again
+            </Button> 
+          </div>
+        }
       </div>
     }
     </>
