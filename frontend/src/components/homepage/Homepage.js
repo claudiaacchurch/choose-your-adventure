@@ -1,16 +1,111 @@
+import * as React from "react";
 import Genre from "../genre/Genre";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import ToggleHowToPlay from "../howToPlay/toggleHowTo";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "../app/App.css"
+import { styled } from "@mui/system";
+
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme({
+    components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "black"
+        }
+    }}},
+});
+
+
+
 
 const Homepage = ({ setScenario, setActions, navigate }) => {
   return (
-    <>
-      <h3 className="title"> Infinity Trails</h3>
-      <div className="intro">
-        <p>Welcome to your next adventure</p>
-      </div>
-      <div className="genre">
-        <Genre setScenario={setScenario} setActions={setActions} navigate={navigate}/>
-      </div>
-    </>
+    <body>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <AppBar position="relative" >
+        <Toolbar>
+          <Typography variant="h6" color={"black"}
+         >
+            Infinity Trails
+          </Typography>
+        </Toolbar>
+      </AppBar>
+      <Box>
+        {/* Hero unit */}
+        <Box
+          sx={{
+            pt: 8,
+            pb: 6,
+          }}
+        >
+          <Container maxWidth="sm">
+            <Typography
+              className="intro"
+              component="h1"
+              variant="h2"
+              align="center"
+              fontFamily={'Handjet, cursive'}
+              fontSize={80}
+              gutterBottom
+            >
+              Infinity Trails
+            </Typography>
+            <Typography
+              className="intro"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Welcome to your next adventure
+            </Typography>
+            <Typography
+              className="choosegenre"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Choose a genre
+            </Typography>
+            <Stack
+              sx={{ pt: 4 }}
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+            >
+              <div className="genre" height="80vh">
+                <Genre
+                  setScenario={setScenario}
+                  setActions={setActions}
+                  navigate={navigate}
+                />
+              </div>
+            </Stack>
+          </Container>
+        </Box>
+      </Box>
+      <div className="App">
+          <ToggleHowToPlay></ToggleHowToPlay>
+        </div>
+    </ThemeProvider>
+    </body>
   );
 };
 

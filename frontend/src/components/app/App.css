@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Handjet:wght@400;600;800&family=Rajdhani:wght@300;500;600&display=swap");
+
 .App {
   text-align: center;
 }
@@ -19,7 +21,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #ffffff !important;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -42,3 +44,33 @@
   }
 }
 
+
+body {
+  background-image: linear-gradient(to bottom right, white , black);
+}
+/* body{
+  background-image: url("https://images.unsplash.com/photo-1585937943005-0ffcea62c86f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1548&q=80");
+  /* https://images.unsplash.com/photo-1534515538060-80212d73acb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80 */
+  /* background-size: cover;
+  background-position: center;
+} */ */
+
+.maintitle {
+  color: rgb(222, 58, 21) !important;
+  text-shadow: 2px 5px 7px rgb(8, 48, 206);
+}
+
+.intro{
+  color: rgb(222, 58, 21) !important;
+  text-shadow: 2px 5px 7px rgb(8, 48, 206);
+}
+
+.choosegenre{
+  color: rgb(222, 58, 21) !important;
+  text-shadow: 2px 5px 7px rgb(8, 48, 206);
+}
+
+.genreimages{
+    border-style: solid;
+    border-color: red;
+}
