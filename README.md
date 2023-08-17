@@ -7,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ```
   cd api
   npm i
+  npm install supertest
 ```
 3. Install npm to the frontend:
 ```
