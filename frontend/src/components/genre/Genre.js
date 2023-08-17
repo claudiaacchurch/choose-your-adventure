@@ -156,7 +156,7 @@ const Genre = ({ navigate, setScenario, setActions }) => {
             width: "50vw",
             height: "35vh",
             border: "10",
-            borderColor: "#02156d",
+            borderColor: "white",
             borderStyle: "solid",
           }}
         >
