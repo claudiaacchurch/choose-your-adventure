@@ -6,15 +6,16 @@ import { styled } from "@mui/material/styles";
 
 const genreImages = [
   {
-    url: "https://images.unsplash.com/photo-1550100136-e092101726f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+    url: "https://images.unsplash.com/photo-1461397932544-11132a69bf46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     title: "Fantasy",
-    value: "fantasy",
+
+    value: "Fantasy",
     width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1608178398319-48f814d0750c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80",
     title: "Space",
-    value: "space",
+    value: "Space",
     width: "100%",
   },
   {
@@ -125,7 +126,13 @@ const ImageMarked = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-const Genre = ({ navigate, setScenario, setActions }) => {
+const Genre = ({
+  navigate,
+  setScenario,
+  setActions,
+  setImgClass,
+  setLoading,
+}) => {
   const [genre, setGenre] = useState("");
   const [character, setCharacter] = useState("");
 
@@ -145,6 +152,18 @@ const Genre = ({ navigate, setScenario, setActions }) => {
   useEffect(() => {
     if (character !== "") {
       apirequest();
+    }
+  });
+
+  useEffect(() => {
+    if (genre !== "") {
+      if (genre === "Fantasy") {
+        setImgClass("fantasy");
+      } else if (genre === "Noir") {
+        setImgClass("noir");
+      } else {
+        setImgClass("space");
+      }
     }
   }, [character]);
 
