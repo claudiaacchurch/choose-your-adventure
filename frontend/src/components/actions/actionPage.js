@@ -2,11 +2,20 @@ import Button from "@mui/material/Button";
 import React, { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, status, navigate, setGenre}) => {
-  const[selectedAction, setSelectedAction] = useState("");
+const ActionPage = ({
+  setScenario,
+  setActions,
+  setStatus,
+  actions,
+  scenario,
+  status,
+  navigate,
+  setGenre,
+}) => {
+  const [selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
 
-  console.log("action",selectedAction);
+  console.log("action", selectedAction);
 
   const selectAction = (e) => {
     e.preventDefault();
@@ -23,12 +32,11 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
   useEffect(() => {
     if (scenario === "") {
       setLoading(true);
-    }
-    else {
+    } else {
       setLoading(false);
     }
   }, [scenario]);
-  
+
   const actionApirequest = async () => {
     fetch("http://localhost:8080/action", {
       method: "post",
@@ -44,69 +52,69 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
   };
 
   const startAgain = () => {
-    setStatus("Continue")
-    setSelectedAction("")
-    setScenario("")
-    navigate("/")
-  }
+    setStatus("Continue");
+    setSelectedAction("");
+    setScenario("");
+    navigate("/");
+  };
 
-    return (
+  return (
     <>
-    {loading ? 
-    <div>
-      <PacmanLoader
-      color="black"
-      loading={loading}
-      size={25} 
-      speedMultiplier={2}
-      aria-label="Pacman Spinner"
-      className="loader" />  
-    </div> : 
-      <div>
-        <div className="scenario">
-          <p>{scenario}</p>
-        </div>
-        { status !== "Continue" ?
+      {loading ? (
         <div>
-          { status === "Game Over" ?
-            <p>
-              Game Over
-            </p> :
-            <p>
-              Congratulations! You Won!
-            </p>
-          }
-        </div> :
-          <div>
-            <Button
-              className="action1-btn"
-              variant="text"
-              color="primary"
-              value={`${actions[0]}`}
-              onClick={selectAction}
-            >
-              {actions[0]}
-            </Button>
-            <Button
-              className="action2-btn"
-              variant="text"
-              color="primary"
-              value={`${actions[1]}`}
-              onClick={selectAction}
-            >
-              {actions[1]}
-            </Button>
-            <Button
-              className="action3-btn"
-              variant="text"
-              color="primary"
-              value={`${actions[2]}`}
-              onClick={selectAction}
-            >
-              {actions[2]}
-            </Button> 
-          </div> 
-          }
+          <PacmanLoader
+            color="yellow"
+            loading={loading}
+            size={25}
+            speedMultiplier={2}
+            aria-label="Pacman Spinner"
+            className="loader"
+          />
+        </div>
+      ) : (
+        <div>
+          <div className="scenario">
+            <p>{scenario}</p>
+          </div>
+          {status !== "Continue" ? (
+            <div>
+              {status === "Game Over" ? (
+                <p>Game Over</p>
+              ) : (
+                <p>Congratulations! You Won!</p>
+              )}
+            </div>
+          ) : (
+            <div>
+              <Button
+                className="action1-btn"
+                variant="text"
+                color="primary"
+                value={`${actions[0]}`}
+                onClick={selectAction}
+              >
+                {actions[0]}
+              </Button>
+              <Button
+                className="action2-btn"
+                variant="text"
+                color="primary"
+                value={`${actions[1]}`}
+                onClick={selectAction}
+              >
+                {actions[1]}
+              </Button>
+              <Button
+                className="action3-btn"
+                variant="text"
+                color="primary"
+                value={`${actions[2]}`}
+                onClick={selectAction}
+              >
+                {actions[2]}
+              </Button>
+            </div>
+          )}
           <div>
             <Button
               className="start-again-btn"
@@ -115,12 +123,12 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
               onClick={startAgain}
             >
               Start A New Game
-            </Button> 
+            </Button>
           </div>
-      </div>
-    }
+        </div>
+      )}
     </>
-  )
+  );
 };
 
 export default ActionPage;
