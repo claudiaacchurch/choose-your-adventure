@@ -1,10 +1,10 @@
 import Button from "@mui/material/Button";
-import React, { useState, useNavigate, useEffect } from "react";
+import React, { useNavigate, useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Genre = ({ navigate, setScenario, setActions  }) => {
-  const [genre, setGenre] = useState("");
   const [loading, setLoading] = useState(false);
+  const [genre, setGenre] = useState("");
 
   const giveGenreValue = (e) => {
     e.preventDefault();
