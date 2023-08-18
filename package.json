@@ -3,6 +3,7 @@
     "cypress": "^4.2.0"
   },
   "dependencies": {
+    "dotenv": "^16.3.1",
     "react-router-dom": "^6.15.0",
     "react-scripts": "^2.1.3"
   }
