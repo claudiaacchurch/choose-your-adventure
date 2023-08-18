@@ -31,14 +31,14 @@ const Homepage = ({ setScenario, setActions, navigate }) => {
     <body>
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      <AppBar position="relative" >
+      {/* <AppBar position="relative" >
         <Toolbar>
           <Typography variant="h6" color={"black"}
          >
             Infinity Trails
           </Typography>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Box>
         {/* Hero unit */}
         <Box
@@ -49,7 +49,7 @@ const Homepage = ({ setScenario, setActions, navigate }) => {
         >
           <Container maxWidth="sm">
             <Typography
-              className="intro"
+              className="hometitle"
               component="h1"
               variant="h2"
               align="center"
@@ -98,7 +98,7 @@ const Homepage = ({ setScenario, setActions, navigate }) => {
           </Container>
         </Box>
       </Box>
-      <div className="App">
+      <div className="content">
           <ToggleHowToPlay></ToggleHowToPlay>
         </div>
     </ThemeProvider>
