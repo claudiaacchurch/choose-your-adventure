@@ -1,10 +1,9 @@
-import Button from "@mui/material/Button";
-import React, { useNavigate, useState, useEffect } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 const images = [
   {
@@ -100,7 +99,7 @@ const Genre = ({ navigate, setScenario, setActions }) => {
 
   const giveGenreValue = (e) => {
     e.preventDefault();
-    setGenre(e.target.value);
+    setGenre(e.target.innerText);
   };
 
   useEffect(() => {
@@ -128,8 +127,8 @@ const Genre = ({ navigate, setScenario, setActions }) => {
     <>
       {loading ? (
         <div>
-          <ClipLoader
-            color="blue"
+          <PacmanLoader
+            color="yellow"
             loading={loading}
             size={150}
             aria-label="Loading Spinner"
@@ -152,7 +151,7 @@ const Genre = ({ navigate, setScenario, setActions }) => {
               focusRipple
               key={image.title}
               onClick={giveGenreValue}
-              value={image.value}
+              value={image.title}
               style={{
                 width: image.width,
                 height: "100%",
