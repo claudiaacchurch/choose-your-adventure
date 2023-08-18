@@ -8,6 +8,7 @@ import { useNavigate, Routes, Route } from "react-router-dom";
 const App = () => {
   const [scenario, setScenario] = useState("");
   const [actions, setActions] = useState([]);
+  const [status, setStatus] = useState("Continue");
   const navigate = useNavigate();
 
   return (
@@ -19,11 +20,11 @@ const App = () => {
           />
           <Route
             path="/genre"
-            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} navigate={navigate} />}
+            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} navigate={navigate} />}
           />
           <Route
             path="/action"
-            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} navigate={navigate} />}
+            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} status={status} navigate={navigate} />}
           />
         </Routes>
         </body>
