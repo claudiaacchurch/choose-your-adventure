@@ -47,8 +47,6 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
     setStatus("Continue")
     setSelectedAction("")
     setScenario("")
-    // setActions([])
-    // setGenre("")
     navigate("/")
   }
 
