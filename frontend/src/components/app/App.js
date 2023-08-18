@@ -10,7 +10,6 @@ const App = () => {
   const [scenario, setScenario] = useState("");
   const [actions, setActions] = useState([]);
   const [status, setStatus] = useState("Continue");
-  // const [genre, setGenre] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -30,8 +29,6 @@ const App = () => {
           path="/genre"
           element={
             <ActionPage
-              // genre={genre}
-              // setGenre={setGenre}
               scenario={scenario}
               actions={actions}
               setScenario={setScenario}
@@ -45,7 +42,6 @@ const App = () => {
           path="/action"
           element={
             <ActionPage
-              // setGenre={setGenre}
               scenario={scenario}
               actions={actions}
               setScenario={setScenario}
