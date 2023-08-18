@@ -7,21 +7,21 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 
 const images = [
   {
-    url: "https://images.unsplash.com/photo-1550100136-e092101726f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+    url: "https://images.unsplash.com/photo-1482841628122-9080d44bb807?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
     title: "Fantasy",
-    value: "fantasy",
+    value: "Fantasy",
     width: "100%"
   },
   {
     url: "https://images.unsplash.com/photo-1608178398319-48f814d0750c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80",
     title: "Space",
-    value: "space",
+    value: "Space",
     width: "100%"
   },
   {
     url: "https://images.unsplash.com/photo-1605806616949-1e87b487fc2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     title: "Noir",
-    value: "noir",
+    value: "Noir",
     width: "100%"
   },
 ];
@@ -93,7 +93,7 @@ const ImageMarked = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-const Genre = ({ navigate, setScenario, setActions }) => {
+const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   const [genre, setGenre] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -105,7 +105,16 @@ const Genre = ({ navigate, setScenario, setActions }) => {
   useEffect(() => {
     if (genre !== "") {
       setLoading(true);
+      if (genre === "Fantasy") {
+        setImgClass("fantasy");
+      } else if (genre === "Noir") {
+        setImgClass("noir");
+      } else {
+        setImgClass("space");
+      }
+
       apirequest();
+
     }
   }, [genre]);
 
