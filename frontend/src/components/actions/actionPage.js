@@ -1,6 +1,10 @@
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import React, { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
+import "../app/App.css"
+import Typography from "@mui/material/Typography";
 
 const ActionPage = ({
   setScenario,
@@ -10,7 +14,7 @@ const ActionPage = ({
   scenario,
   status,
   navigate,
-  setGenre,
+  imgClass
 }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
@@ -61,63 +65,157 @@ const ActionPage = ({
   return (
     <>
       {loading ? (
-        <div>
+          <Box
+          sx={{
+            height:" 100vh",
+            display: "flex",
+            flexWrap: "nowrap",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "center",
+          }} >
           <PacmanLoader
             color="yellow"
             loading={loading}
             size={25}
             speedMultiplier={2}
+            alignItems="center"
+            justifyContent="center"
             aria-label="Pacman Spinner"
             className="loader"
           />
-        </div>
+        </Box>
       ) : (
+        <Box
+        className={imgClass}
+        sx={{
+          height:" 100vh",
+          display: "flex",
+          flexWrap: "nowrap",
+          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+          fontFamily: "handjet, cursive",
+        }} >
         <div>
-          <div className="scenario">
-            <p>{scenario}</p>
+            <Typography
+              mt="6%"
+              className="actionpagetitle"
+              component="h1"
+              variant="h2"
+              align="center"
+              fontFamily={'Handjet, cursive'}
+              fontSize={80}
+              gutterBottom
+            >
+              Infinity Trails
+            </Typography>
+          <div className="scenario"> 
+            <Typography
+              fontSize={25}              
+              align="center"
+              fontFamily={'Handjet, cursive'}
+              >{scenario}</Typography>
           </div>
           {status !== "Continue" ? (
             <div>
               {status === "Game Over" ? (
-                <p>Game Over</p>
+                <p className="game-end">Game Over</p>
               ) : (
-                <p>Congratulations! You Won!</p>
+                <p className="game-end">Congratulations! You Won!</p>
               )}
             </div>
           ) : (
-            <div>
-              <Button
-                className="action1-btn"
-                variant="text"
-                color="primary"
-                value={`${actions[0]}`}
-                onClick={selectAction}
-              >
-                {actions[0]}
-              </Button>
-              <Button
-                className="action2-btn"
-                variant="text"
-                color="primary"
-                value={`${actions[1]}`}
-                onClick={selectAction}
-              >
-                {actions[1]}
-              </Button>
-              <Button
-                className="action3-btn"
-                variant="text"
-                color="primary"
-                value={`${actions[2]}`}
-                onClick={selectAction}
-              >
-                {actions[2]}
-              </Button>
-            </div>
+            <Box className="actionbuttons" sx ={{  
+            display:"flex",
+            flexWrap:"wrap",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "center"
+          }}>
+                <Button
+                  sx ={{
+                    width:"20vw",
+                    border: 1,
+                    borderColor: "blue",
+                    borderRadius: "20px",
+                    textTransform: "capitalize",
+                    m: 1,
+                    fontSize: "20px",              
+                    align: "center",
+                    fontFamily: "Handjet, cursive",
+                    backgroundColor: "black"
+                  }}
+                  className="action1-btn"
+                  variant="text"
+                  value={`${actions[0]}`}
+                  onClick={selectAction}
+                >
+                  {actions[0]}
+                </Button>
+                <Button
+                  sx ={{
+                    width:"20vw",
+                    border: 1,
+                    borderColor: "blue",
+                    borderRadius: "20px",
+                    textTransform: "capitalize",
+                    m: 1,
+                    fontSize: "20px",              
+                    align: "center",
+                    fontFamily: "Handjet, cursive",
+                    backgroundColor: "black"
+                  }}
+                  className="action2-btn"
+                  variant="text"
+                  value={`${actions[1]}`}
+                  onClick={selectAction}
+                >
+                  {actions[1]}
+                </Button>
+                <Button
+                  sx ={{
+                    width:"20vw",
+                    border: 1,
+                    borderColor: "blue",
+                    borderRadius: "20px",
+                    textTransform: "capitalize",
+                    m: 1,
+                    fontSize: "20px",              
+                    align: "center",
+                    fontFamily: "Handjet, cursive",
+                    backgroundColor: "black"
+                  }}
+                  className="action3-btn"
+                  variant="text"
+                  value={`${actions[2]}`}
+                  onClick={selectAction}
+                >
+                  
+                  {actions[2]}
+                </Button>
+    
+            </Box>
           )}
+          <Box sx ={{  
+            display:"flex",
+            flexWrap:"wrap",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "center"}}>
           <div>
             <Button
               className="start-again-btn"
+              sx ={{
+                border: 1,
+                borderColor: "red",
+                borderRadius: "20px",
+                m: 5,
+                fontSize: "20px",              
+                align: "center",
+                fontFamily: "Handjet, cursive",
+                backgroundColor: "black",
+              }}
               variant="text"
               color="success"
               onClick={startAgain}
@@ -125,9 +223,13 @@ const ActionPage = ({
               Start A New Game
             </Button>
           </div>
+        
+          </Box>
         </div>
+      
+        </Box>
       )}
-    </>
+      </>
   );
 };
 

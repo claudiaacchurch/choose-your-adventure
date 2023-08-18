@@ -9,6 +9,7 @@ const App = () => {
   const [scenario, setScenario] = useState("");
   const [actions, setActions] = useState([]);
   const [status, setStatus] = useState("Continue");
+  const [imgClass, setImgClass] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -16,15 +17,15 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Homepage setScenario={setScenario} setActions={setActions} navigate={navigate} />}
+            element={<Homepage setScenario={setScenario} setActions={setActions} navigate={navigate} setImgClass={setImgClass}/>}
           />
           <Route
             path="/genre"
-            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} navigate={navigate} />}
+            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus}  navigate={navigate} setImgClass={setImgClass}/>}
           />
           <Route
             path="/action"
-            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} status={status} navigate={navigate} />}
+            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} status={status} imgClass={imgClass} navigate={navigate} />}
           />
         </Routes>
         </body>
