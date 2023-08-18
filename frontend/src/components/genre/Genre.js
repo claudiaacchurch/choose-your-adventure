@@ -7,7 +7,7 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 
 const images = [
   {
-    url: "https://images.unsplash.com/photo-1482841628122-9080d44bb807?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+    url: "https://images.unsplash.com/photo-1461397932544-11132a69bf46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     title: "Fantasy",
     value: "Fantasy",
     width: "100%"
