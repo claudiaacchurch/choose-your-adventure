@@ -1,7 +1,6 @@
 import * as React from "react";
 import Genre from "../genre/Genre";
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
@@ -11,17 +10,15 @@ import Container from "@mui/material/Container";
 import ToggleHowToPlay from "../howToPlay/toggleHowTo";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "../app/App.css"
-import { styled } from "@mui/system";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme({
     components: {
     MuiAppBar: {
       styleOverrides: {
         root: {
-          backgroundColor: "black"
+          backgroundColor: "transparent",
+          boxShadow: "none"
         }
     }}},
 });

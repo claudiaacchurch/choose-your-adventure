@@ -1,25 +1,10 @@
-import Button from "@mui/material/Button";
-import React, { useState, useNavigate, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import AppBar from "@mui/material/AppBar";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ButtonBase from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
-import { borders } from "@mui/system";
 
-const cards = [1, 2, 3];
 const images = [
   {
     url: "https://images.unsplash.com/photo-1550100136-e092101726f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
