@@ -3,26 +3,46 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
-import PacmanLoader from "react-spinners/PacmanLoader";
 
-const images = [
+const genreImages = [
   {
     url: "https://images.unsplash.com/photo-1550100136-e092101726f4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
     title: "Fantasy",
     value: "fantasy",
-    width: "100%"
+    width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1608178398319-48f814d0750c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80",
     title: "Space",
     value: "space",
-    width: "100%"
+    width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1605806616949-1e87b487fc2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
     title: "Noir",
     value: "noir",
-    width: "100%"
+    width: "100%",
+  },
+];
+
+const characterImages = [
+  {
+    url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
+    title: "Ethan",
+    value: "Ethan",
+    width: "100%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
+    title: "Lydia",
+    value: "Lydia",
+    width: "100%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
+    title: "Dave",
+    value: "Dave",
+    width: "100%",
   },
 ];
 
@@ -95,47 +115,40 @@ const ImageMarked = styled("span")(({ theme }) => ({
 
 const Genre = ({ navigate, setScenario, setActions }) => {
   const [genre, setGenre] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [character, setCharacter] = useState("");
 
   const giveGenreValue = (e) => {
     e.preventDefault();
     setGenre(e.target.innerText);
   };
 
+  const giveCharacterValue = (e) => {
+    e.preventDefault();
+    setCharacter(e.target.innerText);
+  };
+
   useEffect(() => {
-    if (genre !== "") {
-      setLoading(true);
+    if (character !== "") {
       apirequest();
     }
-  }, [genre]);
+  }, [character]);
 
   const apirequest = async () => {
     fetch("http://localhost:8080/genre", {
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ genre: genre }),
+      body: JSON.stringify({ genre: genre, character: character }),
     }).then(async (response) => {
       let data = await response.json();
       setScenario(data.response.setting);
       setActions(data.response.actions);
-      setLoading(false);
     });
     navigate("/action");
   };
 
   return (
     <>
-      {loading ? (
-        <div>
-          <PacmanLoader
-            color="yellow"
-            loading={loading}
-            size={150}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
-      ) : (
+      {genre === "" ? (
         <Box
           sx={{
             display: "flex",
@@ -145,7 +158,7 @@ const Genre = ({ navigate, setScenario, setActions }) => {
             height: "40vh",
           }}
         >
-          {images.map((image) => (
+          {genreImages.map((image) => (
             <ImageButton
               classname="genreimages"
               focusRipple
@@ -165,7 +178,52 @@ const Genre = ({ navigate, setScenario, setActions }) => {
                   variant="subtitle1"
                   color="yellow"
                   fontSize={35}
-                  fontFamily={'Handjet, cursive'}
+                  fontFamily={"Handjet, cursive"}
+                  sx={{
+                    position: "relative",
+                    p: 4,
+                    pt: 2,
+                    pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                  }}
+                >
+                  {image.title}
+                  <ImageMarked className="MuiImageMarked-root" />
+                </Typography>
+              </Image>
+            </ImageButton>
+          ))}
+        </Box>
+      ) : (
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "nowrap",
+            alignItems: "center",
+            width: "70vw",
+            height: "40vh",
+          }}
+        >
+          {characterImages.map((image) => (
+            <ImageButton
+              classname="characterimages"
+              focusRipple
+              key={image.title}
+              onClick={giveCharacterValue}
+              value={image.title}
+              style={{
+                width: image.width,
+                height: "100%",
+              }}
+            >
+              <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+              <ImageBackdrop className="MuiImageBackdrop-root" />
+              <Image>
+                <Typography
+                  component="span"
+                  variant="subtitle1"
+                  color="yellow"
+                  fontSize={35}
+                  fontFamily={"Handjet, cursive"}
                   sx={{
                     position: "relative",
                     p: 4,
@@ -184,4 +242,17 @@ const Genre = ({ navigate, setScenario, setActions }) => {
     </>
   );
 };
+
+/*
+
+Type: Rogue
+Personality Traits: Mysterious, agile, quick-witted
+
+Type: Investigator
+Personality Traits: Analytical, resourceful, determined
+
+Type: Explorer
+Personality Traits: Adventurous, inquisitive, fearless
+*/
+
 export default Genre;

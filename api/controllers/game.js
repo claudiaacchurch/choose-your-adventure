@@ -6,10 +6,11 @@ const GameController = {
   StartGame: async (req, res) => {
     chatGPTMessages.length = 0;
     const genre = req.body.genre;
+    const character = req.body.character;
     const initialMessage = {
       role: "system",
       content:
-        `I want you to play like a classic text adventure game. I will be the protagonist and main player. Don’t refer to yourself. The setting of this game will have a theme of ${genre}.` +
+        `I want you to play like a classic text adventure game. I will be the protagonist and main player. Don’t refer to yourself.  g of this game will have a theme of ${genre} and a character called ${character}.` +
         `A go is every scenario that you give and also ghe three possible actions` +
         `Give each go some sort of jeopardy, keep it exciting, make the user have a fun experience! Keep it as interesting as possible` +
         `Have it follow a sort of journey that is leading towards completing some sort of quest` +
@@ -23,16 +24,18 @@ const GameController = {
         `Your responses are just in JSON format like this example, where status is either "Game Over", "Game Won" or "Continue": \n\n###\n\n {"setting":"setting description", "actions":["action 1", "action 2", "action 3"], "status": "status"}\n\n###\n\n`,
     };
     chatGPTMessages.push(initialMessage);
-    askGPT(chatGPTMessages).then( (response) => {
-      const chatResponse = {
-      role: "assistant",
-      content: JSON.stringify(response),
-    };
-    chatGPTMessages.push(chatResponse);
-    return res.status(200).json({ response: response });
-    }).catch((err) => {
-      console.error(err)
-    })
+    askGPT(chatGPTMessages)
+      .then((response) => {
+        const chatResponse = {
+          role: "assistant",
+          content: JSON.stringify(response),
+        };
+        chatGPTMessages.push(chatResponse);
+        return res.status(200).json({ response: response });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
 
   MakeAction: async (req, res) => {
@@ -42,18 +45,19 @@ const GameController = {
       content: action,
     };
     chatGPTMessages.push(nextStep);
-    askGPT(chatGPTMessages).then( (response) =>{
-      const chatResponse = {
-        role: "assistant",
-        content: JSON.stringify(response),
-      };
-      chatGPTMessages.push(chatResponse);
-      console.log(response);
-      return res.status(200).json({ response: response });
-    }).catch((err) => {
-      console.error(err)
-    })
-    
+    askGPT(chatGPTMessages)
+      .then((response) => {
+        const chatResponse = {
+          role: "assistant",
+          content: JSON.stringify(response),
+        };
+        chatGPTMessages.push(chatResponse);
+        console.log(response);
+        return res.status(200).json({ response: response });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
 };
 
