@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import React, { useState, useNavigate, useEffect } from "react";
+import React, { useNavigate, useState, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Genre = ({ navigate, setScenario, setActions  }) => {

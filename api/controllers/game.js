@@ -23,13 +23,16 @@ const GameController = {
         `Your responses are just in JSON format like this example, where status is either "Game Over", "Game Won" or "Continue": \n\n###\n\n {"setting":"setting description", "actions":["action 1", "action 2", "action 3"], "status": "status"}\n\n###\n\n`,
     };
     chatGPTMessages.push(initialMessage);
-    const response = await askGPT(chatGPTMessages);
-    const chatResponse = {
+    askGPT(chatGPTMessages).then( (response) => {
+      const chatResponse = {
       role: "assistant",
       content: JSON.stringify(response),
     };
     chatGPTMessages.push(chatResponse);
     return res.status(200).json({ response: response });
+    }).catch((err) => {
+      console.error(err)
+    })
   },
 
   MakeAction: async (req, res) => {
@@ -39,13 +42,18 @@ const GameController = {
       content: action,
     };
     chatGPTMessages.push(nextStep);
-    const response = await askGPT(chatGPTMessages);
-    const chatResponse = {
-      role: "assistant",
-      content: JSON.stringify(response),
-    };
-    chatGPTMessages.push(chatResponse);
-    return res.status(200).json({ response: response });
+    askGPT(chatGPTMessages).then( (response) =>{
+      const chatResponse = {
+        role: "assistant",
+        content: JSON.stringify(response),
+      };
+      chatGPTMessages.push(chatResponse);
+      console.log(response);
+      return res.status(200).json({ response: response });
+    }).catch((err) => {
+      console.error(err)
+    })
+    
   },
 };
 

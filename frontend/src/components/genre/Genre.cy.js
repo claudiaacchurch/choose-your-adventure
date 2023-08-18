@@ -13,7 +13,7 @@ describe("Picking up genre component and actions", () => {
         cy.intercept({
             method: 'POST',
             url: '/genre'
-          }).as('postGameStart');
+        }).as('postGameStart');
         cy.mount(<Homepage navigate={navigate}/>);
         cy.get(".fantasy-btn").click();
         cy.wait('@postGameStart').its('request.body').should('deep.equal', {
@@ -25,7 +25,7 @@ describe("Picking up genre component and actions", () => {
         cy.intercept({
             method: 'POST',
             url: '/genre'
-          }).as('postGameStart');
+        }).as('postGameStart');
         cy.mount(<Homepage navigate={navigate}/>);
         cy.get(".noir-btn").click();
         cy.wait('@postGameStart').its('request.body').should('deep.equal', {
@@ -37,7 +37,7 @@ describe("Picking up genre component and actions", () => {
         cy.intercept({
             method: 'POST',
             url: '/genre'
-          }).as('postGameStart');
+        }).as('postGameStart');
         cy.mount(<Homepage navigate={navigate}/>);
         cy.get(".space-btn").click();
         cy.wait('@postGameStart').its('request.body').should('deep.equal', {

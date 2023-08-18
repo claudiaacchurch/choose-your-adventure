@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import React, { useNavigate, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, status, navigate, setGenre}) => {
   const[selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
 
-  console.log("actions",selectedAction);
+  console.log("action",selectedAction);
 
   const selectAction = (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
   const startAgain = () => {
     setStatus("Continue")
     setSelectedAction("")
-    // setScenario("")
+    setScenario("")
     // setActions([])
     // setGenre("")
     navigate("/")
@@ -68,7 +68,17 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
         <div className="scenario">
           <p>{scenario}</p>
         </div>
-        {status==="Continue" ?
+        { status !== "Continue" ?
+        <div>
+          { status === "Game Over" ?
+            <p>
+              Game Over
+            </p> :
+            <p>
+              Congratulations! You Won!
+            </p>
+          }
+        </div> :
           <div>
             <Button
               className="action1-btn"
@@ -97,18 +107,18 @@ const ActionPage = ({ setScenario, setActions, setStatus, actions, scenario, sta
             >
               {actions[2]}
             </Button> 
-          </div> :
+          </div> 
+          }
           <div>
             <Button
               className="start-again-btn"
               variant="text"
-              color="primary"
+              color="success"
               onClick={startAgain}
             >
-              Start Again
+              Start A New Game
             </Button> 
           </div>
-        }
       </div>
     }
     </>
