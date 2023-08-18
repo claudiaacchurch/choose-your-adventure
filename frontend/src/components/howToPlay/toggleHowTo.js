@@ -1,6 +1,10 @@
 import "./toggle.css";
 import * as React from "react";
 import { useState } from "react";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { styled } from "@mui/material/styles";
+import "../app/App.css"
 
 const ToggleHowToPlay = () => {
   const [isContentOpen, setContentOpen] = useState(false);
@@ -9,11 +13,16 @@ const ToggleHowToPlay = () => {
   };
   return (
     <div className="ToggleHowToPlay">
-      <button className="toggleButton" onClick={toggleContent}>
+      <Button variant="text" className="toggleButton" onClick={toggleContent} sx={{ fontSize:25,
+                  fontFamily:'Handjet, cursive'}}>
         {isContentOpen ? "Close" : "How to Play"}
-      </button>
+      </Button>
       {isContentOpen && (
-        <div className="content">
+        <Typography
+        color="inherit"
+        fontSize={20}
+        fontFamily={'Handjet, cursive'}
+        >
           <h4>
             {" "}
             To begin please click one of the three genres to decide what type of
@@ -22,7 +31,7 @@ const ToggleHowToPlay = () => {
             Be sure to choose wisely as any mistake could end in disaster for
             you and end your game.... Enjoy!
           </h4>
-        </div>
+        </Typography>
       )}
     </div>
   );
