@@ -25,11 +25,23 @@ const genreImages = [
   },
 ];
 
+/*
+
+Type: Rogue
+Personality Traits: Mysterious, agile, quick-witted
+
+Type: Investigator
+Personality Traits: Analytical, resourceful, determined
+
+Type: Explorer
+Personality Traits: Adventurous, inquisitive, fearless
+*/
+
 const characterImages = [
   {
     url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
     title: "Ethan",
-    value: "Ethan",
+    value: "EthanValue",
     width: "100%",
   },
   {
@@ -122,9 +134,12 @@ const Genre = ({ navigate, setScenario, setActions }) => {
     setGenre(e.target.innerText);
   };
 
-  const giveCharacterValue = (e) => {
-    e.preventDefault();
-    setCharacter(e.target.innerText);
+  const giveCharacterValue = (event) => {
+    event.preventDefault();
+    const characterTitle = event.target.innerText;
+    if (characterTitle === "Ethan") {
+    }
+    setCharacter("named Ethan, and is smart");
   };
 
   useEffect(() => {
@@ -209,7 +224,7 @@ const Genre = ({ navigate, setScenario, setActions }) => {
               focusRipple
               key={image.title}
               onClick={giveCharacterValue}
-              value={image.title}
+              value={image.value}
               style={{
                 width: image.width,
                 height: "100%",
@@ -242,17 +257,5 @@ const Genre = ({ navigate, setScenario, setActions }) => {
     </>
   );
 };
-
-/*
-
-Type: Rogue
-Personality Traits: Mysterious, agile, quick-witted
-
-Type: Investigator
-Personality Traits: Analytical, resourceful, determined
-
-Type: Explorer
-Personality Traits: Adventurous, inquisitive, fearless
-*/
 
 export default Genre;

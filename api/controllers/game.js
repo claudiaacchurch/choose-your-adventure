@@ -10,13 +10,16 @@ const GameController = {
     const initialMessage = {
       role: "system",
       content:
-        `I want you to play like a classic text adventure game. I will be the protagonist and main player. Don’t refer to yourself.  g of this game will have a theme of ${genre} and a character called ${character}.` +
-        `A go is every scenario that you give and also ghe three possible actions` +
-        `Give each go some sort of jeopardy, keep it exciting, make the user have a fun experience! Keep it as interesting as possible` +
+        `I want you to simulate a classic text adventure game. I will be the protagonist and main player. Don’t refer to yourself.` +
+        `This game will have a theme of ${genre} and the protagonist is ${character}.` +
+        `Always refer to the protagonist by their name in the scenario you give.` +
+        `Mention the protagonist's name in the scenario you give.` +
+        `A round is every scenario that you give and also the three possible actions you provide` +
+        `Give each round some sort of jeopardy, keep it exciting, make the user have a fun experience! Keep the scenarios as interesting as possible. ` +
+        `Make the three actions different every round.` +
         `Have it follow a sort of journey that is leading towards completing some sort of quest` +
-        `keep it exciting!!!!!` +
         `Each setting has a description of 100 words followed by an array of 3 possible actions that the player can perform.` +
-        `one in three of the actions should end the game when selected, where it returns an array of actions  with three empty strings and says game over or congratulations for winning.` +
+        `One in three of the actions should end the game when selected, where it returns an array of actions with three empty strings and says game over or congratulations for winning.` +
         `A round is each new scenario with three possible options, When the user clicks an action and a new scenario and set of actions is generated that is the completion of one round and then moving onto the next one.` +
         `The game is a maximum of 5 rounds, so when you reach the fifth round end the game with either a winning scenario or losing scenario and then give no more options for the user!` +
         `Have the adventure follow a set path. The success of the adventure is determined by the choices the player makes.` +
