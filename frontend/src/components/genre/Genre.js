@@ -119,7 +119,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   }, [genre]);
 
   const apirequest = async () => {
-    fetch("https://choose-your-adventure-mbbz.onrender.com/genre", {
+    fetch(`${process.env.REACT_APP_API_URL}/genre`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre }),

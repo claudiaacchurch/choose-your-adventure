@@ -7,13 +7,16 @@ const cors = require("cors");
 const bp = require("body-parser");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const dotenv = require('dotenv');
+require('dotenv').config();
+if (process.env.NODE_ENV === 'development') {
+  dotenv.config({ path: '.env.development' });
+}
+
 
 var app = express();
 
-const allowedOrigins = [
-  'https://frontend-ajg63g5uq-claudiaacchurch.vercel.app',
-  'https://frontend-phi-lyart.vercel.app'
-];
+const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
 app.use(cors({
   origin: function (origin, callback) {
