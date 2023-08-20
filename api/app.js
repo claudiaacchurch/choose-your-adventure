@@ -11,7 +11,7 @@ var usersRouter = require("./routes/users");
 var app = express();
 
 app.use(cors({
-  origin: 'frontend-phi-lyart.vercel.app'
+  origin: 'frontend-ajg63g5uq-claudiaacchurch.vercel.app'
 }));
 
 // view engine setup
