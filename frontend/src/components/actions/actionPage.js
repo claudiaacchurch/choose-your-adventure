@@ -42,7 +42,7 @@ const ActionPage = ({
   }, [scenario]);
 
   const actionApirequest = async () => {
-    fetch("process.env.REACT_APP_BACKEND_URL/action", {
+    fetch("https://choose-your-adventure-mbbz.onrender.com/action", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),
@@ -52,7 +52,10 @@ const ActionPage = ({
       setActions(data.response.actions);
       setStatus(data.response.status);
       setLoading(false);
+    }).then(async (response) => {
+      console.log(response);
     });
+    
   };
 
   const startAgain = () => {

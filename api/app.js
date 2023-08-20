@@ -26,6 +26,7 @@ app.use(cors({
   origin: 'frontend-phi-lyart.vercel.app'
 }));
 
+
 //route setup
 app.use("/", indexRouter);
 
