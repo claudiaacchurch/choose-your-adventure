@@ -156,7 +156,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
         >
           {images.map((image) => (
             <ImageButton
-              classname="genreimages"
+              className="genreimages"
               focusRipple
               key={image.title}
               onClick={giveGenreValue}
