@@ -10,6 +10,10 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+app.use(cors({
+  origin: 'frontend-phi-lyart.vercel.app'
+}));
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
@@ -22,9 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
-app.use(cors({
-  origin: 'frontend-phi-lyart.vercel.app'
-}));
+
 
 
 //route setup
