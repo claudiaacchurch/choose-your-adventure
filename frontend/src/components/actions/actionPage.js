@@ -42,7 +42,7 @@ const ActionPage = ({
   }, [scenario]);
 
   const actionApirequest = async () => {
-    fetch("http://localhost:8080/action", {
+    fetch("process.env.REACT_APP_BACKEND_URL/action", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),

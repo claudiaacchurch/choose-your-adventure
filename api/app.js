@@ -22,7 +22,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
-app.use(cors());
+app.use(cors({
+  origin: 'frontend-phi-lyart.vercel.app'
+}));
 
 //route setup
 app.use("/", indexRouter);

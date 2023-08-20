@@ -119,7 +119,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   }, [genre]);
 
   const apirequest = async () => {
-    fetch("http://localhost:8080/genre", {
+    fetch("process.env.REACT_APP_BACKEND_URL/genre", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre }),
