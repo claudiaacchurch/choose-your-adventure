@@ -13,7 +13,7 @@ require('dotenv').config();
 dotenv.config({ path: '.env.development' });
 var app = express();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
+const allowedOrigins = 'frontend-q8k42ebxa-claudiaacchurch.vercel.app';
 
 app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
