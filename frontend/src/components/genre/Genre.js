@@ -7,55 +7,30 @@ import { styled } from "@mui/material/styles";
 const genreImages = [
   {
     url: "https://images.unsplash.com/photo-1461397932544-11132a69bf46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    title: "Fantasy",
-
-    value: "Fantasy",
-    width: "100%",
+    title: "Fantasy", width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1608178398319-48f814d0750c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80",
-    title: "Space",
-    value: "Space",
-    width: "100%",
+    title: "Space", width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1605806616949-1e87b487fc2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    title: "Noir",
-    value: "noir",
-    width: "100%",
+    title: "Noir", width: "100%",
   },
 ];
 
-/*
-
-Type: Rogue
-Personality Traits: Mysterious, agile, quick-witted
-
-Type: Investigator
-Personality Traits: Analytical, resourceful, determined
-
-Type: Explorer
-Personality Traits: Adventurous, inquisitive, fearless
-*/
-
 const characterImages = [
   {
-    url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
-    title: "Ethan",
-    value: "EthanValue",
-    width: "100%",
+    url: "https://cdn.pixabay.com/photo/2022/10/12/21/33/scientist-7517566_1280.jpg",
+    title: "Smart", width: "80%",
   },
   {
-    url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
-    title: "Lydia",
-    value: "Lydia",
-    width: "100%",
+    url: "https://cdn.pixabay.com/photo/2018/12/04/14/24/warrior-3855706_1280.jpg",
+    title: "Strong", width: "100%",
   },
   {
-    url: "https://cdn.pixabay.com/photo/2016/08/16/10/18/dragon-1597583_1280.png",
-    title: "Dave",
-    value: "Dave",
-    width: "100%",
+    url: "https://cdn.pixabay.com/photo/2022/10/04/17/49/princess-jasmine-7498756_1280.jpg",
+    title: "Charismatic", width: "100%",
   },
 ];
 
@@ -79,7 +54,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
       opacity: 0,
     },
     "& .MuiTypography-root": {
-      border: "4px solid currentColor",
+      border: "0px solid currentColor",
     },
   },
 }));
@@ -131,7 +106,6 @@ const Genre = ({
   setScenario,
   setActions,
   setImgClass,
-  setLoading,
 }) => {
   const [genre, setGenre] = useState("");
   const [character, setCharacter] = useState("");
@@ -144,9 +118,40 @@ const Genre = ({
   const giveCharacterValue = (event) => {
     event.preventDefault();
     const characterTitle = event.target.innerText;
-    if (characterTitle === "Ethan") {
+    if (genre === "Fantasy") {
+      if (characterTitle === "Strong") {
+      setCharacter("fighter whose goal is to try and save someone.");
+      }
+      if (characterTitle === "Smart") {
+        setCharacter("wizard whose goal is to try and find magic item.");
+      }
+      if (characterTitle === "Charismatic") {
+        setCharacter("bard whose goal is to try and make a friend.");
+      }
     }
-    setCharacter("named Ethan, and is smart");
+    if (genre === "Noir") {
+      if (characterTitle === "Strong") {
+      setCharacter("boxer whose goal is to try and find love.");
+      }
+      if (characterTitle === "Smart") {
+        setCharacter("detective whose goal is to try and solve a mystery.");
+      }
+      if (characterTitle === "Charismatic") {
+        setCharacter("femme fatale whose goal is to try and steal something expensive.");
+      }
+    }
+    if (genre === "Space") {
+      if (characterTitle === "Strong") {
+      setCharacter("mechanic whose goal is to try and fix the aircraft and save the crew.");
+      }
+      if (characterTitle === "Smart") {
+        setCharacter("scientist whose goal is to try and find a new planet to inhabit.");
+      }
+      if (characterTitle === "Charismatic") {
+        setCharacter("diplomat whose goal is to try and make peace with aliens.");
+      }
+    }
+    
   };
 
   useEffect(() => {
@@ -192,13 +197,24 @@ const Genre = ({
             height: "40vh",
           }}
         >
+          <Typography
+              className="choosegenre"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              position="left"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Choose Genre
+            </Typography>
           {genreImages.map((image) => (
             <ImageButton
-              classname="genreimages"
+              className="genreimages"
               focusRipple
               key={image.title}
               onClick={giveGenreValue}
-              value={image.title}
               style={{
                 width: image.width,
                 height: "100%",
@@ -237,13 +253,24 @@ const Genre = ({
             height: "40vh",
           }}
         >
+          <Typography
+              className="choosegenre"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              position="left"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Choose Your Best Trait
+            </Typography>
           {characterImages.map((image) => (
             <ImageButton
-              classname="characterimages"
+              className="characterimages"
               focusRipple
               key={image.title}
               onClick={giveCharacterValue}
-              value={image.value}
               style={{
                 width: image.width,
                 height: "100%",
