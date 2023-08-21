@@ -55,7 +55,8 @@ const ActionPage = ({
   }, [scenario]);
 
   const actionApirequest = async () => {
-    fetch("http://localhost:8080/action", {
+    fetch(`${process.env.REACT_APP_API_URL}/action`, {
+      mode: 'cors',
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),
@@ -66,6 +67,7 @@ const ActionPage = ({
       setStatus(data.response.status);
       setLoading(false);
     });
+    
   };
 
   const startAgain = () => {

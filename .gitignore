@@ -10,6 +10,7 @@ frontend/node_modules/
 # testing
 /coverage
 /frontend/cypress/videos
+/frontend/cypress/screenshots
 
 # production
 /frontend/build
@@ -26,4 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # api key
-/api/apiKey/apiKey.js
+/api/.env 

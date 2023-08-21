@@ -46,7 +46,7 @@ const GameController = {
     const action = req.body.action;
     const nextStep = {
       role: "user",
-      content: action,
+      content: action + ". Respond in JSON format like this example, where status is either 'Game Over', 'Game Won' or 'Continue': \n\n###\n\n {'setting':'setting description', 'actions':['action 1', 'action 2', 'action 3'], 'status': 'status'}\n\n###\n\n`,",
     };
     chatGPTMessages.push(nextStep);
     askGPT(chatGPTMessages)
