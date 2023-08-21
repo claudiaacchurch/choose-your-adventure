@@ -119,7 +119,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   }, [genre]);
 
   const apirequest = async () => {
-    fetch("api-5tg0cuhcd-claudiaacchurch.vercel.app/genre", {
+    fetch("api-ashy-chi.vercel.app/genre", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre }),

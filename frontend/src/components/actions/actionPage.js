@@ -42,7 +42,7 @@ const ActionPage = ({
   }, [scenario]);
 
   const actionApirequest = async () => {
-    fetch('api-5tg0cuhcd-claudiaacchurch.vercel.app/action', {
+    fetch('api-ashy-chi.vercel.app/action', {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),
