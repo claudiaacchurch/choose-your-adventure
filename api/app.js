@@ -9,11 +9,12 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const dotenv = require('dotenv');
 require('dotenv').config();
+
 if (process.env.NODE_ENV === 'development') {
   dotenv.config({ path: '.env.development' });
+} else {
+  dotenv.config();
 }
-
-
 var app = express();
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
