@@ -5,6 +5,14 @@ import React, { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import "../app/App.css"
 import Typography from "@mui/material/Typography";
+import Sound from "react-sound";
+import FantasyMusic from "../../music/FantasyMusic.mp3";
+import NoirMusic from "../../music/NoirMusic.mp3";
+import SpaceMusic from "../../music/SpaceMusic.mp3";
+import FormControlContext from "@mui/material/FormControl/FormControlContext";
+// import Switch from '@mui/material/Switch';
+// import CustomSlider from './CustomSlider'; 
+// import Container from '@mui/material/Container';
 
 const ActionPage = ({
   setScenario,
@@ -14,11 +22,22 @@ const ActionPage = ({
   scenario,
   status,
   navigate,
+  genre,
   imgClass
 }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
+  const [musicUrl, setMusicUrl] = useState("");
+  // const [musicPlayStatus, setMusicPlayStatus] = useState(Sound.status.Playing);
+  // const toggleMusicPlay = () => {
+  //   setMusicPlayStatus(
+  //     musicPlayStatus === Sound.status.PLAYING
+  //     ? Sound.status.PAUSED
+  //     : Sound.status.PLAYING
+  //   );
+  // };
 
+  
   console.log("action", selectedAction);
 
   const selectAction = (e) => {
@@ -62,8 +81,23 @@ const ActionPage = ({
     navigate("/");
   };
 
+  useEffect(() => {
+      if (imgClass === "fantasy") {
+        setMusicUrl(FantasyMusic);
+      } else if (imgClass === "noir") {
+        setMusicUrl(NoirMusic);
+      } else {
+        setMusicUrl(SpaceMusic);
+      }
+    }, [genre]);
+
   return (
     <>
+    <Sound
+      url={musicUrl}
+      playStatus={Sound.status.PLAYING}
+      loop={true}
+      />
       {loading ? (
           <Box
           sx={{
