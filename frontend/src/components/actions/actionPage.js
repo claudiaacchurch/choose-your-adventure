@@ -42,7 +42,7 @@ const ActionPage = ({
   }, [scenario]);
 
   const actionApirequest = async () => {
-    fetch('https://api-ashy-chi.vercel.app/action', {
+    fetch(`${process.env.REACT_APP_API_URL}/action`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),

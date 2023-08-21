@@ -13,15 +13,12 @@ require('dotenv').config();
 dotenv.config({ path: '.env.development' });
 var app = express();
 
-const allowedOrigins = ['https://frontend-phi-lyart.vercel.app'];
+const allowedOrigins = process.env.ALLOWED_ORIGINS;
 
 app.use(cors({
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  origin: allowedOrigins,
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: allowedOrigins
 }));
-
-
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
