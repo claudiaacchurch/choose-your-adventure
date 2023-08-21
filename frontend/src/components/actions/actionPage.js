@@ -10,8 +10,9 @@ import NoirMusic from "../../music/NoirMusic.mp3";
 import SpaceMusic from "../../music/SpaceMusic.mp3";
 import Slider from "@mui/material/Slider";
 import volumeImage from "./volumeImage.png";
+import messageLoad from "./loading_messages"
 
-
+var randomElement = messageLoad[Math.floor(Math.random() * messageLoad.length)]; 
 
 
 const ActionPage = ({
@@ -39,6 +40,7 @@ const ActionPage = ({
 
   useEffect(() => {
     if (selectedAction !== "") {
+      randomElement = messageLoad[Math.floor(Math.random() * messageLoad.length)];  
       setLoading(true);
       actionApirequest();
     }
@@ -127,6 +129,20 @@ const ActionPage = ({
             aria-label="Pacman Spinner"
             className="loader"
           />
+
+          <Typography
+              mt="2%"
+              className="loadingText"
+              component="h4"
+              variant="h2"
+              align="center"
+              fontFamily={'Handjet, cursive'}
+              fontSize={30}
+              gutterBottom
+            >
+              {randomElement}
+            </Typography>
+
         </Box>
       ) : (
         <Box
@@ -277,3 +293,4 @@ const ActionPage = ({
 };
 
 export default ActionPage;
+

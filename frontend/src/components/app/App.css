@@ -56,6 +56,15 @@ body {
   height: 100%;
 } */
 
+
+.loadingText {
+  color: #3498db;;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
 .maintitle {
   color: rgb(222, 58, 21) !important;
   text-shadow: 2px 5px 7px rgb(8, 48, 206);
