@@ -29,8 +29,7 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
       <CssBaseline />
       {/* <AppBar position="relative" >
         <Toolbar>
-          <Typography variant="h6" color={"black"}
-         >
+          <Typography variant="h6" color={"black"}>
             Infinity Trails
           </Typography>
         </Toolbar>
@@ -66,7 +65,7 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
             >
               Welcome to your next adventure
             </Typography>
-            <Typography
+            {/* <Typography
               className="choosegenre"
               variant="h5"
               align="center"
@@ -76,7 +75,7 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
               paragraph
             >
               Choose a genre
-            </Typography>
+            </Typography> */}
             <Stack
               sx={{ pt: 4 }}
               direction="row"

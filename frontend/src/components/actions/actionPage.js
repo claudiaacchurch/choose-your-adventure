@@ -1,10 +1,18 @@
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import ButtonGroup from "@mui/material/ButtonGroup";
 import React, { useState, useEffect } from "react";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import "../app/App.css"
 import Typography from "@mui/material/Typography";
+import Sound from "react-sound";
+import FantasyMusic from "../../music/FantasyMusic.mp3";
+import NoirMusic from "../../music/NoirMusic.mp3";
+import SpaceMusic from "../../music/SpaceMusic.mp3";
+import Slider from "@mui/material/Slider";
+import volumeImage from "./volumeImage.png";
+
+
+
 
 const ActionPage = ({
   setScenario,
@@ -14,11 +22,14 @@ const ActionPage = ({
   scenario,
   status,
   navigate,
+  genre,
   imgClass
 }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [musicUrl, setMusicUrl] = useState("");
+  const [musicVolume, setMusicVolume] = useState(20);
+  
   console.log("action", selectedAction);
 
   const selectAction = (e) => {
@@ -66,8 +77,40 @@ const ActionPage = ({
     navigate("/");
   };
 
+  useEffect(() => {
+      if (imgClass === "fantasy") {
+        setMusicUrl(FantasyMusic);
+      } else if (imgClass === "noir") {
+        setMusicUrl(NoirMusic);
+      } else {
+        setMusicUrl(SpaceMusic);
+      }
+    }, [genre]);
+
+    let handleSliderChange = (event, newValue) => {
+      setMusicVolume(newValue);
+    }
+
   return (
     <>
+        <Sound
+          url={musicUrl}
+          playStatus={Sound.status.PLAYING}
+          loop={true}
+          volume={musicVolume}
+          />
+        <div className="volume">
+        <img src={volumeImage} alt="volume" style={{width:30, height:30, color:"white"}}/>
+        <Slider
+          value={musicVolume} 
+          marks min={0} max={100}
+          onChange={handleSliderChange}
+          sx={{
+            width: 150,
+            color: 'blue',
+          }}
+        />
+        </div>
       {loading ? (
           <Box
           sx={{
@@ -103,7 +146,7 @@ const ActionPage = ({
         }} >
         <div>
             <Typography
-              mt="6%"
+              mt="2%"
               className="actionpagetitle"
               component="h1"
               variant="h2"
