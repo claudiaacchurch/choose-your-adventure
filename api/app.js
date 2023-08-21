@@ -16,6 +16,7 @@ var app = express();
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
 
 app.use(cors({
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   origin: function (origin, callback) {
     
     if (!origin) return callback(null, true);  
@@ -25,7 +26,6 @@ app.use(cors({
     }
     return callback(null, true);
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
 
