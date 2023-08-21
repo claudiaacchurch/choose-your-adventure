@@ -17,7 +17,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 
 app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  origin: allowedOrigins,
+  origin: "*",
   credentials: true
 }));
 
