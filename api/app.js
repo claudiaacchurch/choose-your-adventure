@@ -10,11 +10,7 @@ var usersRouter = require("./routes/users");
 const dotenv = require('dotenv');
 require('dotenv').config();
 
-if (process.env.NODE_ENV === 'development') {
-  dotenv.config({ path: '.env.development' });
-} else {
-  dotenv.config();
-}
+dotenv.config({ path: '.env.development' });
 var app = express();
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',');
