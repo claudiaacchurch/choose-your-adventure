@@ -17,7 +17,8 @@ const allowedOrigins = ['https://frontend-phi-lyart.vercel.app'];
 
 app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  origin: allowedOrigins
+  origin: allowedOrigins,
+  credentials: true
 }));
 
 
