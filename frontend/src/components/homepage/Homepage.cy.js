@@ -4,7 +4,7 @@ const navigate = () => {}
 describe("HomePage", () => {
     it("Shows the title", () => {
         cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".title").should("contain.text","Infinity Trails")
+        cy.get(".hometitle").should("contain.text","Infinity Trails")
     })
 
     it("Shows the introduction message", () => {
@@ -13,6 +13,6 @@ describe("HomePage", () => {
     })
     it("Shows the Genre buttons", () => {
         cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".genre").should("contain.text","FantasyNoirSpace")
+        cy.get(".genre").should("contain.text","FantasySpaceNoir")
     })
 })

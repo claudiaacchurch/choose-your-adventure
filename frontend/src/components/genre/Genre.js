@@ -170,6 +170,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
               <ImageBackdrop className="MuiImageBackdrop-root" />
               <Image>
                 <Typography
+                  className={`${image.title}-btn`}
                   component="span"
                   variant="subtitle1"
                   color="yellow"

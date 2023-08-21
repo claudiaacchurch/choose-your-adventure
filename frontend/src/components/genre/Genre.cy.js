@@ -4,7 +4,7 @@ const navigate = () => {}
 describe("Genre", () => {
     it("Fantasy button mounts", () => {
         cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".fantasy-btn").should("contain.text","Fantasy")
+        cy.get(".Fantasy-btn").should("contain.text","Fantasy")
     });
 });
 
@@ -15,7 +15,7 @@ describe("Picking up genre component and actions", () => {
             url: '/genre'
         }).as('postGameStart');
         cy.mount(<Homepage navigate={navigate}/>);
-        cy.get(".fantasy-btn").click();
+        cy.get(".Fantasy-btn").click();
         cy.wait('@postGameStart').its('request.body').should('deep.equal', {
             genre: "fantasy"
     });
