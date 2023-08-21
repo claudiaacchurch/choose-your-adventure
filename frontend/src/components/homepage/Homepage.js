@@ -1,10 +1,8 @@
 import * as React from "react";
 import Genre from "../genre/Genre";
-import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import ToggleHowToPlay from "../howToPlay/toggleHowTo";
@@ -22,8 +20,6 @@ const defaultTheme = createTheme({
         }
     }}},
 });
-
-
 
 
 const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
