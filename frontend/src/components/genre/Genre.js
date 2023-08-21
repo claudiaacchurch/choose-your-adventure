@@ -112,7 +112,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
       } else {
         setImgClass("space");
       }
-
+      console.log(process.env.REACT_APP_API_URL)
       apirequest();
 
     }
