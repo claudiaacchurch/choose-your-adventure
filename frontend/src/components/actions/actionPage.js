@@ -43,6 +43,7 @@ const ActionPage = ({
 
   const actionApirequest = async () => {
     fetch(`${process.env.REACT_APP_API_URL}/action`, {
+      mode: 'cors',
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),

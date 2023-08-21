@@ -119,6 +119,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
 
   const apirequest = async () => {
     fetch(`${process.env.REACT_APP_API_URL}/genre`, {
+      mode: 'cors',
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre }),
