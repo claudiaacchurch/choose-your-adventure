@@ -7,15 +7,15 @@ import { styled } from "@mui/material/styles";
 const genreImages = [
   {
     url: "https://images.unsplash.com/photo-1461397932544-11132a69bf46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    title: "Fantasy", width: "100%",
+    title: "Fantasy Adventure", width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1608178398319-48f814d0750c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80",
-    title: "Space", width: "100%",
+    title: "Space Horror", width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1605806616949-1e87b487fc2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    title: "Noir", width: "100%",
+    title: "Detective Noir", width: "100%",
   },
 ];
 
@@ -118,7 +118,7 @@ const Genre = ({
   const giveCharacterValue = (event) => {
     event.preventDefault();
     const characterTitle = event.target.innerText;
-    if (genre === "Fantasy") {
+    if (genre === "Fantasy Adventure") {
       if (characterTitle === "Strong") {
       setCharacter("fighter whose goal is to try and save someone.");
       }
@@ -129,7 +129,7 @@ const Genre = ({
         setCharacter("bard whose goal is to try and make a friend.");
       }
     }
-    if (genre === "Noir") {
+    if (genre === "Detective Noir") {
       if (characterTitle === "Strong") {
       setCharacter("boxer whose goal is to try and find love.");
       }
@@ -140,7 +140,7 @@ const Genre = ({
         setCharacter("femme fatale whose goal is to try and steal something expensive.");
       }
     }
-    if (genre === "Space") {
+    if (genre === "Space Horror") {
       if (characterTitle === "Strong") {
       setCharacter("mechanic whose goal is to try and fix the aircraft and save the crew.");
       }
@@ -158,19 +158,19 @@ const Genre = ({
     if (character !== "") {
       apirequest();
     }
-  });
+  }, [character]);
 
   useEffect(() => {
     if (genre !== "") {
-      if (genre === "Fantasy") {
+      if (genre === "Fantasy Adventure") {
         setImgClass("fantasy");
-      } else if (genre === "Noir") {
+      } else if (genre === "Detective Noir") {
         setImgClass("noir");
       } else {
         setImgClass("space");
       }
     }
-  }, [character]);
+  }, [genre]);
 
   const apirequest = async () => {
     fetch("http://localhost:8080/genre", {
