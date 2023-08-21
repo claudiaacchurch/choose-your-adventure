@@ -1,13 +1,9 @@
 {"version": 2,
+"buildCommand": "npm build",
 "builds": [
   {
     "src": "./bin/www",
     "use": "@now/node"
   }
-],
-"routes": [
-  {
-    "src": "/(.*)",
-    "dest": "./bin/www"
-  }]
+]
 }
