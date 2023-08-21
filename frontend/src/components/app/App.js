@@ -13,7 +13,7 @@ const App = () => {
   const navigate = useNavigate();
 
   return (
-        <body>
+
         <Routes>
           <Route
             path="/"
@@ -28,7 +28,7 @@ const App = () => {
             element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} status={status} imgClass={imgClass} navigate={navigate} />}
           />
         </Routes>
-        </body>
+
   );
 };
 

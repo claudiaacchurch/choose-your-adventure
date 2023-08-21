@@ -1,5 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
-const apiKey = require("../apiKey/apiKey");
+require('dotenv').config();
+const apiKey = process.env.API_KEY;
 const configuration = new Configuration({
   apiKey: apiKey,
 });
@@ -13,8 +14,9 @@ const askGPT = async (messages) => {
   });
   const response = chatCompletion.data.choices[0].message;
   const content = response.content;
-  const contentObject = JSON.parse(content);
-  return contentObject;
+  const parsedData = JSON.parse(content);
+
+  return parsedData;
 };
 
 module.exports = askGPT;

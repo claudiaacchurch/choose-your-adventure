@@ -1,10 +1,14 @@
 const GameController = require("../../controllers/game");
 const askGPT = require("../../controllers/apiClient");
-const app = require("../../app")
 jest.mock("../../controllers/apiClient");
 const request = require("supertest");
+const dotenv = require('dotenv');
+require('dotenv').config({ path: '.env.development' });
+const app = require("../../app")
+
 
 describe("GameController", () => {
+
   test("startGame sends genre specific messages array to apiClient and returns a json response message", async () => {
     const mockResponse = {
       setting:

@@ -19,6 +19,7 @@ const ToggleHowToPlay = () => {
       </Button>
       {isContentOpen && (
         <Typography
+        className="content"
         color="inherit"
         fontSize={20}
         fontFamily={'Handjet, cursive'}

@@ -173,7 +173,8 @@ const Genre = ({
   }, [character]);
 
   const apirequest = async () => {
-    fetch("http://localhost:8080/genre", {
+    fetch(`${process.env.REACT_APP_API_URL}/genre`, {
+      mode: 'cors',
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre, character: character }),
@@ -224,6 +225,7 @@ const Genre = ({
               <ImageBackdrop className="MuiImageBackdrop-root" />
               <Image>
                 <Typography
+                  className={`${image.title}-btn`}
                   component="span"
                   variant="subtitle1"
                   color="yellow"

@@ -22,8 +22,6 @@ const defaultTheme = createTheme({
 });
 
 
-
-
 const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
   return (
     <body>
