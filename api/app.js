@@ -13,12 +13,15 @@ require('dotenv').config();
 dotenv.config({ path: '.env.development' });
 var app = express();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS;
+const allowedOrigins = process.env.ALLOWED_ORIGINS
 
 app.use(cors({
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  origin: allowedOrigins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: allowedOrigins,
+  credentials: true
 }));
+
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
