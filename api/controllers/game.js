@@ -28,6 +28,7 @@ const GameController = {
       role: "assistant",
       content: JSON.stringify(response),
     };
+    console.log("MESSAGES", chatGPTMessages)
     chatGPTMessages.push(chatResponse);
     return res.status(200).json({ response: response });
     }).catch((err) => {
