@@ -1,10 +1,6 @@
-{"version": 2,
-"buildCommand": "npm build",
-"builds": [
-  {
-    "src": "./bin/www",
-    "use": "@now/node"
-  }
-]
-
+{
+  "version": 2,
+  "builds": [
+    { "src": "app.js", "use": "@vercel/node" }
+  ]
 }
