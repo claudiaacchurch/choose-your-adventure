@@ -64,8 +64,6 @@ const ActionPage = ({
       setActions(data.response.actions);
       setStatus(data.response.status);
       setLoading(false);
-    }).then(async (response) => {
-      console.log(response);
     });
     
   };
