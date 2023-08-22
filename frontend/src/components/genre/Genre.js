@@ -22,15 +22,15 @@ const genreImages = [
 const characterImages = [
   {
     url: "https://cdn.pixabay.com/photo/2022/10/12/21/33/scientist-7517566_1280.jpg",
-    title: "Smart", width: "80%",
+    title: "Intelligence", width: "100%",
   },
   {
     url: "https://cdn.pixabay.com/photo/2018/12/04/14/24/warrior-3855706_1280.jpg",
-    title: "Strong", width: "100%",
+    title: "Strength", width: "100%",
   },
   {
     url: "https://cdn.pixabay.com/photo/2022/10/04/17/49/princess-jasmine-7498756_1280.jpg",
-    title: "Charismatic", width: "100%",
+    title: "Charisma", width: "100%",
   },
 ];
 
@@ -119,35 +119,35 @@ const Genre = ({
     event.preventDefault();
     const characterTitle = event.target.innerText;
     if (genre === "Fantasy Adventure") {
-      if (characterTitle === "Strong") {
+      if (characterTitle === "Strength") {
       setCharacter("fighter whose goal is to try and save someone.");
       }
-      if (characterTitle === "Smart") {
+      if (characterTitle === "Intelligence") {
         setCharacter("wizard whose goal is to try and find magic item.");
       }
-      if (characterTitle === "Charismatic") {
+      if (characterTitle === "Charisma") {
         setCharacter("bard whose goal is to try and make a friend.");
       }
     }
     if (genre === "Detective Noir") {
-      if (characterTitle === "Strong") {
+      if (characterTitle === "Strength") {
       setCharacter("boxer whose goal is to try and find love.");
       }
-      if (characterTitle === "Smart") {
+      if (characterTitle === "Intelligence") {
         setCharacter("detective whose goal is to try and solve a mystery.");
       }
-      if (characterTitle === "Charismatic") {
+      if (characterTitle === "Charisma") {
         setCharacter("femme fatale whose goal is to try and steal something expensive.");
       }
     }
     if (genre === "Space Horror") {
-      if (characterTitle === "Strong") {
+      if (characterTitle === "Strength") {
       setCharacter("mechanic whose goal is to try and fix the aircraft and save the crew.");
       }
-      if (characterTitle === "Smart") {
+      if (characterTitle === "Intelligence") {
         setCharacter("scientist whose goal is to try and find a new planet to inhabit.");
       }
-      if (characterTitle === "Charismatic") {
+      if (characterTitle === "Charisma") {
         setCharacter("diplomat whose goal is to try and make peace with aliens.");
       }
     }
@@ -189,6 +189,19 @@ const Genre = ({
   return (
     <>
       {genre === "" ? (
+        <>
+        <Typography
+        className="choosegenre"
+        variant="h5"
+        align="center"
+        color="text.secondary"
+        position="left"
+        fontFamily={'Handjet, cursive'}
+        fontSize={40}
+        paragraph
+        >
+        Choose Genre
+      </Typography>
         <Box
           sx={{
             display: "flex",
@@ -198,18 +211,6 @@ const Genre = ({
             height: "40vh",
           }}
         >
-          <Typography
-              className="choosegenre"
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              position="left"
-              fontFamily={'Handjet, cursive'}
-              fontSize={40}
-              paragraph
-            >
-              Choose Genre
-            </Typography>
           {genreImages.map((image) => (
             <ImageButton
               className="genreimages"
@@ -245,7 +246,21 @@ const Genre = ({
             </ImageButton>
           ))}
         </Box>
+        </>
       ) : (
+        <>
+        <Typography
+          className="choosegenre"
+          variant="h5"
+          align="center"
+          color="text.secondary"
+          position="left"
+          fontFamily={'Handjet, cursive'}
+          fontSize={40}
+          paragraph
+        >
+          Choose Your Best Trait
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -255,18 +270,7 @@ const Genre = ({
             height: "40vh",
           }}
         >
-          <Typography
-              className="choosegenre"
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              position="left"
-              fontFamily={'Handjet, cursive'}
-              fontSize={40}
-              paragraph
-            >
-              Choose Your Best Trait
-            </Typography>
+        
           {characterImages.map((image) => (
             <ImageButton
               className="characterimages"
@@ -301,6 +305,7 @@ const Genre = ({
             </ImageButton>
           ))}
         </Box>
+        </>
       )}
     </>
   );

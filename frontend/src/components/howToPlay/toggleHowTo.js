@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import "../app/App.css"
+import { alignProperty } from "@mui/material/styles/cssUtils";
 
 const ToggleHowToPlay = () => {
   const [isContentOpen, setContentOpen] = useState(false);
@@ -23,6 +24,8 @@ const ToggleHowToPlay = () => {
         color="inherit"
         fontSize={20}
         fontFamily={'Handjet, cursive'}
+        marginLeft={28}
+        marginRight={28}
         >
           <h4>
             {" "}

@@ -8,17 +8,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   cd api
   npm i
   npm install supertest
+  npm install dotenv
 ```
 3. Install npm to the frontend:
 ```
    cd frontend
    npm i
 ```
-5. Install Material UI:
+5. Create an API Key from OpenAI and store it as an enviroment variable:
+  First create an .env file inside your api folder.
 ```
-   cd frontend
-   npm install @material-ui/core
+   cd api
+   touch .env
 ```
+  Then store your key in that file as:
+  API_KEY = YOUR-KEY-GOES-HERE-NO-QUOTES-NEEDED
+
 *Make sure you have the latest version of nvm and node installed.
 ``` 
   npm install -g n 
@@ -34,6 +39,8 @@ If you get a critical message try running:
 ```
 ~ npm audit fix --force
 ```
+
+
 
 ## Available Scripts
 
