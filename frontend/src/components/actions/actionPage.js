@@ -156,11 +156,6 @@ const ActionPage = ({
             right:"80%",
             height:" 100vh",
             display: "inline-flex",
-            // flexWrap: "wrap",
-            // alignItems: "center",
-            // flexDirection: "row",
-            // justifyContent: "center",
-            // marginTop:"10%",
           }}>
         <img src={volumeImage} alt="volume" style={{width:25, height:25, color:"blue", paddingRight:"2%"}}/>
         <Slider

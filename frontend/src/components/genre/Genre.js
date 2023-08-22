@@ -7,30 +7,70 @@ import { styled } from "@mui/material/styles";
 const genreImages = [
   {
     url: "https://images.unsplash.com/photo-1461397932544-11132a69bf46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    title: "Fantasy Adventure", width: "100%",
+    title: "Fantasy Adventure",
+    width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1608178398319-48f814d0750c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1158&q=80",
-    title: "Space Horror", width: "100%",
+    title: "Space Horror",
+    width: "100%",
   },
   {
     url: "https://images.unsplash.com/photo-1605806616949-1e87b487fc2f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    title: "Detective Noir", width: "100%",
+    title: "Detective Noir",
+    width: "100%",
   },
 ];
 
-const characterImages = [
+const fantasyCharacterImages = [
   {
-    url: "https://cdn.pixabay.com/photo/2022/10/12/21/33/scientist-7517566_1280.jpg",
-    title: "Intelligence", width: "100%",
+    url: "https://cdn.pixabay.com/photo/2023/08/20/08/37/fantasy-8201952_1280.jpg",
+    title: "Wizard",
+    width: "80%",
   },
   {
-    url: "https://cdn.pixabay.com/photo/2018/12/04/14/24/warrior-3855706_1280.jpg",
-    title: "Strength", width: "100%",
+    url: "https://cdn.pixabay.com/photo/2023/06/30/22/20/art-8099126_1280.jpg",
+    title: "Heroine",
+    width: "80%",
   },
   {
     url: "https://cdn.pixabay.com/photo/2022/10/04/17/49/princess-jasmine-7498756_1280.jpg",
-    title: "Charisma", width: "100%",
+    title: "Sorceress",
+    width: "80%",
+  },
+];
+const spaceCharacterImages = [
+  {
+    url: "https://cdn.pixabay.com/photo/2022/10/12/21/33/scientist-7517566_1280.jpg",
+    title: "Scientist",
+    width: "80%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2023/05/29/18/53/woman-8026950_1280.jpg",
+    title: "Soldier",
+    width: "80%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2023/02/03/15/52/old-man-7765455_1280.jpg",
+    title: "Diplomat",
+    width: "80%",
+  },
+];
+const noirCharacterImages = [
+  {
+    url: "https://images.pexels.com/photos/7319347/pexels-photo-7319347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    title: "Detective",
+    width: "100%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2023/07/01/16/20/ai-generated-8100445_1280.jpg",
+    title: "Undercover cop",
+    width: "100%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2023/08/09/02/34/sinister-sphinx-8178424_1280.jpg",
+    title: "Femme fatale",
+    width: "100%",
   },
 ];
 
@@ -101,14 +141,10 @@ const ImageMarked = styled("span")(({ theme }) => ({
   transition: theme.transitions.create("opacity"),
 }));
 
-const Genre = ({
-  navigate,
-  setScenario,
-  setActions,
-  setImgClass,
-}) => {
+const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   const [genre, setGenre] = useState("");
   const [character, setCharacter] = useState("");
+  const [characterImages, setCharacterImages] = useState([]);
 
   const giveGenreValue = (e) => {
     e.preventDefault();
@@ -119,39 +155,46 @@ const Genre = ({
     event.preventDefault();
     const characterTitle = event.target.innerText;
     if (genre === "Fantasy Adventure") {
-      if (characterTitle === "Strength") {
-      setCharacter("fighter whose goal is to try and save someone.");
+      if (characterTitle === "Heroine") {
+        setCharacter("fighter whose goal is to try and save someone.");
       }
-      if (characterTitle === "Intelligence") {
-        setCharacter("wizard whose goal is to try and find magic item.");
+      if (characterTitle === "Wizard") {
+        setCharacter("wizard whose goal is to try and find a magic item.");
       }
-      if (characterTitle === "Charisma") {
-        setCharacter("bard whose goal is to try and make a friend.");
+      if (characterTitle === "Sorceress") {
+        setCharacter("sorceress whose goal is to dominate the land and defeat her enemies.");
       }
     }
     if (genre === "Detective Noir") {
-      if (characterTitle === "Strength") {
-      setCharacter("boxer whose goal is to try and find love.");
+      if (characterTitle === "Undercover cop") {
+        setCharacter("undercover cop whose goal is to infiltrate a gang.");
       }
-      if (characterTitle === "Intelligence") {
+      if (characterTitle === "Detective") {
         setCharacter("detective whose goal is to try and solve a mystery.");
       }
-      if (characterTitle === "Charisma") {
-        setCharacter("femme fatale whose goal is to try and steal something expensive.");
+      if (characterTitle === "Femme fatale") {
+        setCharacter(
+          "femme fatale whose goal is to try and steal something expensive."
+        );
       }
     }
     if (genre === "Space Horror") {
-      if (characterTitle === "Strength") {
-      setCharacter("mechanic whose goal is to try and fix the aircraft and save the crew.");
+      if (characterTitle === "Soldier") {
+        setCharacter(
+          "soldier whose goal is to try and defend the spacecraft from alien attack."
+        );
       }
-      if (characterTitle === "Intelligence") {
-        setCharacter("scientist whose goal is to try and find a new planet to inhabit.");
+      if (characterTitle === "Scientist") {
+        setCharacter(
+          "scientist whose goal is to try and find a new planet to inhabit."
+        );
       }
-      if (characterTitle === "Charisma") {
-        setCharacter("diplomat whose goal is to try and make peace with aliens.");
+      if (characterTitle === "Diplomat") {
+        setCharacter(
+          "diplomat whose goal is to try and make peace with aliens."
+        );
       }
     }
-    
   };
 
   useEffect(() => {
@@ -164,17 +207,20 @@ const Genre = ({
     if (genre !== "") {
       if (genre === "Fantasy Adventure") {
         setImgClass("fantasy");
+        setCharacterImages(fantasyCharacterImages);
       } else if (genre === "Detective Noir") {
         setImgClass("noir");
+        setCharacterImages(noirCharacterImages);
       } else {
         setImgClass("space");
+        setCharacterImages(spaceCharacterImages);
       }
     }
   }, [genre]);
 
   const apirequest = async () => {
     fetch(`${process.env.REACT_APP_API_URL}/genre`, {
-      mode: 'cors',
+      mode: "cors",
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ genre: genre, character: character }),
@@ -248,18 +294,18 @@ const Genre = ({
         </Box>
         </>
       ) : (
-        <>
+      <>
         <Typography
-          className="choosegenre"
-          variant="h5"
-          align="center"
-          color="text.secondary"
-          position="left"
-          fontFamily={'Handjet, cursive'}
-          fontSize={40}
-          paragraph
-        >
-          Choose Your Best Trait
+              className="choosegenre"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              position="left"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Choose Your Character
         </Typography>
         <Box
           sx={{
@@ -270,7 +316,7 @@ const Genre = ({
             height: "40vh",
           }}
         >
-        
+          
           {characterImages.map((image) => (
             <ImageButton
               className="characterimages"
@@ -305,7 +351,7 @@ const Genre = ({
             </ImageButton>
           ))}
         </Box>
-        </>
+      </>
       )}
     </>
   );
