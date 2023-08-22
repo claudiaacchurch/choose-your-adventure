@@ -35,7 +35,7 @@ const fantasyCharacterImages = [
   },
   {
     url: "https://cdn.pixabay.com/photo/2022/10/04/17/49/princess-jasmine-7498756_1280.jpg",
-    title: "Bard",
+    title: "Sorceress",
     width: "80%",
   },
 ];
