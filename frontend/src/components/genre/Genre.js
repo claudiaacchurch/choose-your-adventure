@@ -35,7 +35,7 @@ const fantasyCharacterImages = [
   },
   {
     url: "https://cdn.pixabay.com/photo/2022/10/04/17/49/princess-jasmine-7498756_1280.jpg",
-    title: "Bard",
+    title: "Sorceress",
     width: "80%",
   },
 ];
@@ -159,10 +159,10 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
         setCharacter("fighter whose goal is to try and save someone.");
       }
       if (characterTitle === "Wizard") {
-        setCharacter("wizard whose goal is to try and find magic item.");
+        setCharacter("wizard whose goal is to try and find a magic item.");
       }
-      if (characterTitle === "Bard") {
-        setCharacter("bard whose goal is to try and make a friend.");
+      if (characterTitle === "Sorceress") {
+        setCharacter("sorceress whose goal is to dominate the land and defeat her enemies.");
       }
     }
     if (genre === "Detective Noir") {
