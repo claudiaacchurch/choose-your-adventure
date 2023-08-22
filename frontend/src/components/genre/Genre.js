@@ -311,7 +311,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             fontSize={40}
             paragraph
           >
-            Choose Your Best Trait
+            Choose Your Character
           </Typography>
           {characterImages.map((image) => (
             <ImageButton
