@@ -139,8 +139,9 @@ const ActionPage = ({
         <Box
         className={imgClass}
         sx={{
+          position:"relative",
           height:" 100vh",
-          backgroundImage:"cover",
+          overflow:"hidden",
           display: "flex",
           flexWrap: "nowrap",
           alignItems: "center",
@@ -150,15 +151,18 @@ const ActionPage = ({
         }} >
         <Box className="volume"
           sx={{
+            position:"absolute",
+            top:'5%',
+            right:"80%",
             height:" 100vh",
             display: "inline-flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop:"10%",
+            // flexWrap: "wrap",
+            // alignItems: "center",
+            // flexDirection: "row",
+            // justifyContent: "center",
+            // marginTop:"10%",
           }}>
-        <img src={volumeImage} alt="volume" style={{width:20, height:20, color:"blue"}}/>
+        <img src={volumeImage} alt="volume" style={{width:25, height:25, color:"blue", paddingRight:"2%"}}/>
         <Slider
           size="small"
           value={musicVolume} 
