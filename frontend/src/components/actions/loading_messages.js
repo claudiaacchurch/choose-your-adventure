@@ -120,7 +120,6 @@ const messageLoad = [
     "A commit a day keeps the mobs away",
     "This is not a joke, it's a commit.",
     "Constructing additional pylons...",
-    "Roping some seaturtles...",
     "Locating Jebediah Kerman...",
     "We are not liable for any broken screens as a result of waiting.",
     "Hello IT, have you tried turning it off and on again?",
