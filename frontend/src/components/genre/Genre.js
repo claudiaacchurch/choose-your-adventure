@@ -351,5 +351,5 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
     </>
   );
 };
-
+//hi
 export default Genre;
