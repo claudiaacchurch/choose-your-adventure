@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import React, { useState, useEffect } from "react";
-import PacmanLoader from "react-spinners/PacmanLoader";
+import RingLoader from "react-spinners/RingLoader";
 import "../app/App.css"
 import Typography from "@mui/material/Typography";
 import Sound from "react-sound";
@@ -99,18 +99,7 @@ const ActionPage = ({
           loop={true}
           volume={musicVolume}
           />
-        <div className="volume">
-        <img src={volumeImage} alt="volume" style={{width:30, height:30, color:"white"}}/>
-        <Slider
-          value={musicVolume} 
-          marks min={0} max={100}
-          onChange={handleSliderChange}
-          sx={{
-            width: 150,
-            color: 'blue',
-          }}
-        />
-        </div>
+        
       {loading ? (
           <Box
           sx={{
@@ -121,14 +110,14 @@ const ActionPage = ({
             flexDirection: "column",
             justifyContent: "center",
           }} >
-          <PacmanLoader
+          <RingLoader
             color="yellow"
             loading={loading}
-            size={25}
+            size={80}
             speedMultiplier={2}
             alignItems="center"
             justifyContent="center"
-            aria-label="Pacman Spinner"
+            aria-label="Infinity Spinner"
             className="loader"
           />
 
@@ -144,13 +133,15 @@ const ActionPage = ({
             >
               {randomElement}
             </Typography>
-
         </Box>
       ) : (
+        <>
         <Box
         className={imgClass}
         sx={{
+          position:"relative",
           height:" 100vh",
+          overflow:"hidden",
           display: "flex",
           flexWrap: "nowrap",
           alignItems: "center",
@@ -158,6 +149,27 @@ const ActionPage = ({
           justifyContent: "center",
           fontFamily: "handjet, cursive",
         }} >
+        <Box className="volume"
+          sx={{
+            position:"absolute",
+            top:'5%',
+            right:"80%",
+            height:" 100vh",
+            display: "inline-flex",
+          }}>
+        <img src={volumeImage} alt="volume" style={{width:25, height:25, color:"blue", paddingRight:"2%"}}/>
+        <Slider
+          size="small"
+          value={musicVolume} 
+          marks min={0} max={100}
+          onChange={handleSliderChange}
+          sx={{
+            width: 100,
+            color: 'blue',
+            alignItems: 'flex-start',
+          }}
+        />
+        </Box>
         <div>
             <Typography
               mt="2%"
@@ -186,6 +198,7 @@ const ActionPage = ({
                 <p className="game-end">Congratulations! You Won!</p>
               )}
             </div>
+  
           ) : (
             <Box className="actionbuttons" sx ={{  
             display:"flex",
@@ -255,7 +268,6 @@ const ActionPage = ({
                   
                   {actions[2]}
                 </Button>
-    
             </Box>
           )}
           <Box sx ={{  
@@ -284,11 +296,10 @@ const ActionPage = ({
               Start A New Game
             </Button>
           </div>
-        
           </Box>
         </div>
-      
         </Box>
+      </>  
       )}
       </>
   );

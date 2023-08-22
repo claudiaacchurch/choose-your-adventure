@@ -235,6 +235,19 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   return (
     <>
       {genre === "" ? (
+        <>
+        <Typography
+        className="choosegenre"
+        variant="h5"
+        align="center"
+        color="text.secondary"
+        position="left"
+        fontFamily={'Handjet, cursive'}
+        fontSize={40}
+        paragraph
+        >
+        Choose Genre
+      </Typography>
         <Box
           sx={{
             display: "flex",
@@ -244,18 +257,6 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             height: "40vh",
           }}
         >
-          <Typography
-            className="choosegenre"
-            variant="h5"
-            align="center"
-            color="text.secondary"
-            position="left"
-            fontFamily={"Handjet, cursive"}
-            fontSize={40}
-            paragraph
-          >
-            Choose Genre
-          </Typography>
           {genreImages.map((image) => (
             <ImageButton
               className="genreimages"
@@ -291,7 +292,21 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             </ImageButton>
           ))}
         </Box>
+        </>
       ) : (
+      <>
+        <Typography
+              className="choosegenre"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              position="left"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Choose Your Character
+        </Typography>
         <Box
           sx={{
             display: "flex",
@@ -301,18 +316,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             height: "40vh",
           }}
         >
-          <Typography
-            className="choosegenre"
-            variant="h5"
-            align="center"
-            color="text.secondary"
-            position="left"
-            fontFamily={"Handjet, cursive"}
-            fontSize={40}
-            paragraph
-          >
-            Choose Your Character
-          </Typography>
+          
           {characterImages.map((image) => (
             <ImageButton
               className="characterimages"
@@ -347,6 +351,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             </ImageButton>
           ))}
         </Box>
+      </>
       )}
     </>
   );

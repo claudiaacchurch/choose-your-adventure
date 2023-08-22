@@ -27,13 +27,6 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
     <body>
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
-      {/* <AppBar position="relative" >
-        <Toolbar>
-          <Typography variant="h6" color={"black"}>
-            Infinity Trails
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
       <Box>
         {/* Hero unit */}
         <Box
@@ -65,17 +58,6 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
             >
               Welcome to your next adventure
             </Typography>
-            {/* <Typography
-              className="choosegenre"
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              fontFamily={'Handjet, cursive'}
-              fontSize={40}
-              paragraph
-            >
-              Choose a genre
-            </Typography> */}
             <Stack
               sx={{ pt: 4 }}
               direction="row"
