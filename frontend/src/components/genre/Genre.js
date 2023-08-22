@@ -60,7 +60,7 @@ const noirCharacterImages = [
   {
     url: "https://images.pexels.com/photos/7319347/pexels-photo-7319347.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     title: "Detective",
-    width: "80%",
+    width: "100%",
   },
   {
     url: "https://cdn.pixabay.com/photo/2023/07/01/16/20/ai-generated-8100445_1280.jpg",
