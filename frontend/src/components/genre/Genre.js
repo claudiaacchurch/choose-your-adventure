@@ -22,7 +22,7 @@ const genreImages = [
 const characterImages = [
   {
     url: "https://cdn.pixabay.com/photo/2022/10/12/21/33/scientist-7517566_1280.jpg",
-    title: "Smart", width: "80%",
+    title: "Smart", width: "100%",
   },
   {
     url: "https://cdn.pixabay.com/photo/2018/12/04/14/24/warrior-3855706_1280.jpg",
@@ -31,6 +31,21 @@ const characterImages = [
   {
     url: "https://cdn.pixabay.com/photo/2022/10/04/17/49/princess-jasmine-7498756_1280.jpg",
     title: "Charismatic", width: "100%",
+  },
+];
+
+const difficultyImages = [
+  {
+    url: "https://cdn.pixabay.com/photo/2019/08/31/22/19/landscape-4444133_1280.jpg",
+    title: "Easy", width: "100%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067_1280.png",
+    title: "Medium", width: "100%",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2016/09/29/13/08/planet-1702788_1280.jpg",
+    title: "Hard", width: "100%",
   },
 ];
 
@@ -109,6 +124,7 @@ const Genre = ({
 }) => {
   const [genre, setGenre] = useState("");
   const [character, setCharacter] = useState("");
+  const [difficulty, setDifficulty] = useState("");
 
   const giveGenreValue = (e) => {
     e.preventDefault();
@@ -154,11 +170,51 @@ const Genre = ({
     
   };
 
-  useEffect(() => {
-    if (character !== "") {
-      apirequest();
+  const giveDifficultyValue = (event) => {
+    event.preventDefault();
+    const difficultyTitle = event.target.innerText;
+    if (genre === "Fantasy Adventure") {
+      if (difficultyTitle === "Easy") {
+      setDifficulty("This is an easy level. The challenges you'll face are relatively simple and straightforward. There's a high chance of winning.");
+      }
+      if (difficultyTitle === "Medium") {
+        setDifficulty("This is a medium level. You'll encounter moderate challenges that require careful decision-making. There's a good chance of winning.");
+      }
+      if (difficultyTitle === "Hard") {
+        setDifficulty("This is a hard level. Be prepared for tough challenges that will test your skills and wit. There's a challenging but rewarding chance of winning.");
+      }
     }
-  }, [character]);
+    if (genre === "Detective Noir") {
+      if (difficultyTitle === "Easy") {
+        setDifficulty("This is an easy level. The mysteries you'll solve are straightforward, and clues are easier to find. There's a high chance of solving the case");
+      }
+      if (difficultyTitle === "Medium") {
+        setDifficulty("This is a medium level. The mysteries are more intricate, and your deductive skills will be put to the test. There's a solid chance of solving the case.");
+      }
+      if (difficultyTitle === "Hard") {
+        setDifficulty("This is a hard level The mysteries are complex and require sharp observation and reasoning. There's a challenging but some chance of solving the case.");
+      }
+    }
+    if (genre === "Space Horror") {
+      if (difficultyTitle === "Easy") {
+        setDifficulty("This is an easy level. Surviving the horrors of space will be less hard. There's a high chance of making it back to win.");
+      }
+      if (difficultyTitle === "Medium") {
+        setDifficulty("This is a medium level. Space is dangerous, and your resourcefulness will be tested. There's a solid chance of overcoming the challenges.");
+      }
+      if (difficultyTitle === "Hard") {
+        setDifficulty("This is a hard level. Space is merciless, and every decision counts. There's a challenging but heroic chance of making it through.");
+      }
+    }
+    
+  };
+
+
+  // useEffect(() => {
+  //   if (character !== "") {
+  //     apirequest();
+  //   }
+  // }, [character]);
 
   useEffect(() => {
     if (genre !== "") {
@@ -172,12 +228,19 @@ const Genre = ({
     }
   }, [genre]);
 
+  useEffect(() => {
+    if (difficulty !== "") {
+      apirequest();
+    }
+  }, [difficulty]);
+  
+
   const apirequest = async () => {
     fetch(`${process.env.REACT_APP_API_URL}/genre`, {
       mode: 'cors',
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ genre: genre, character: character }),
+      body: JSON.stringify({ genre: genre, character: character, difficulty: difficulty }),
     }).then(async (response) => {
       let data = await response.json();
       setScenario(data.response.setting);
@@ -185,10 +248,9 @@ const Genre = ({
     });
     navigate("/action");
   };
-
-  return (
-    <>
-      {genre === "" ? (
+  if (genre === "") {
+    return (
+      <>
         <Box
           sx={{
             display: "flex",
@@ -245,7 +307,76 @@ const Genre = ({
             </ImageButton>
           ))}
         </Box>
-      ) : (
+      </>
+    )
+  }
+  if (character === "") {
+    return (
+      <>
+        {(
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "nowrap",
+              alignItems: "center",
+              width: "70vw",
+              height: "40vh",
+            }}
+          >
+            <Typography
+                className="choosegenre"
+                variant="h5"
+                align="center"
+                color="text.secondary"
+                position="left"
+                fontFamily={'Handjet, cursive'}
+                fontSize={40}
+                paragraph
+              >
+                Choose Your Best Trait
+              </Typography>
+            {characterImages.map((image) => (
+              <ImageButton
+                className="characterimages"
+                focusRipple
+                key={image.title}
+                onClick={giveCharacterValue}
+                style={{
+                  width: image.width,
+                  height: "100%",
+                }}
+              >
+                <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+                <ImageBackdrop className="MuiImageBackdrop-root" />
+                <Image>
+                  <Typography
+                    component="span"
+                    variant="subtitle1"
+                    color="yellow"
+                    fontSize={35}
+                    fontFamily={"Handjet, cursive"}
+                    sx={{
+                      position: "relative",
+                      p: 4,
+                      pt: 2,
+                      pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                    }}
+                  >
+                    {image.title}
+                    <ImageMarked className="MuiImageMarked-root" />
+                  </Typography>
+                </Image>
+              </ImageButton>
+            ))}
+          </Box>
+        )}
+      </>
+    );
+  }
+  if (difficulty === ""){
+    return (
+      <>
+      {(
         <Box
           sx={{
             display: "flex",
@@ -265,14 +396,14 @@ const Genre = ({
               fontSize={40}
               paragraph
             >
-              Choose Your Best Trait
+              Choose Level of Difficulty
             </Typography>
-          {characterImages.map((image) => (
+          {difficultyImages.map((image) => (
             <ImageButton
-              className="characterimages"
+              className="difficultyimages"
               focusRipple
               key={image.title}
-              onClick={giveCharacterValue}
+              onClick={giveDifficultyValue}
               style={{
                 width: image.width,
                 height: "100%",
@@ -303,7 +434,8 @@ const Genre = ({
         </Box>
       )}
     </>
-  );
+    )
+  }
 };
 
 export default Genre;

@@ -7,11 +7,12 @@ const GameController = {
     chatGPTMessages.length = 0;
     const genre = req.body.genre;
     const character = req.body.character;
+    const difficulty = req.body.difficulty;
     const initialMessage = {
       role: "system",
       content:
         `I want you to simulate a text adventure game. I will be the protagonist of the game.` +
-        `This game will have a theme of ${genre} and the protagonist will be a ${character}.` +
+        `This game will have a theme of ${genre} and the protagonist will be a ${character}. And with a difficulty of ${difficulty}` +
         `Always refer to the protagonist in the setting you give.` +
         `When the game starts, give me a short description of the protagonist's appearance along with the setting.` +
         `A round is every setting that you give and also the three possible actions you provide for the protagonist` +

@@ -23,6 +23,7 @@ const ToggleHowToPlay = () => {
         color="inherit"
         fontSize={20}
         fontFamily={'Handjet, cursive'}
+        
         >
           <h4>
             {" "}
