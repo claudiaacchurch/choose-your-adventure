@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import ButtonBase from "@mui/material/ButtonBase";
-import { styled } from "@mui/material/styles";
-import Button from "@mui/material/Button";
 import {
   ImageButton,
   ImageSrc,
@@ -11,12 +8,14 @@ import {
   ImageBackdrop,
   ImageMarked,
 } from "./StyledComponents";
-import characterConfigs from "./CharacterConfiguration";
 import {
   fantasyCharacterImages,
   spaceCharacterImages,
   noirCharacterImages,
 } from "./CharacterImages";
+import Difficulty from "../difficulty/Difficulty";
+import Character from "../Character/Character";
+import StartNewGame from "../startNewGame/startNewGame";
 
 const genreImages = [
   {
@@ -40,28 +39,21 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   const [genre, setGenre] = useState("");
   const [character, setCharacter] = useState("");
   const [characterImages, setCharacterImages] = useState([]);
+  const [difficulty, setDifficulty] = useState("");
 
   const giveGenreValue = (e) => {
-    if (e.target.innerText === "START A NEW GAME"){
-      setGenre("")
+    if (e.target.innerText === "START A NEW GAME") {
+      setGenre("");
     } else {
       setGenre(e.target.innerText);
     }
   };
 
-  const giveCharacterValue = (event) => {
-    event.preventDefault();
-    const characterTitle = event.target.innerText;
-    const genreConfigs = characterConfigs[genre];
-    const characterDescription = genreConfigs[characterTitle];
-    setCharacter(characterDescription);
-  };
-
   useEffect(() => {
-    if (character !== "") {
+    if (difficulty !== "") {
       apirequest();
     }
-  }, [character]);
+  }, [difficulty]);
 
   useEffect(() => {
     if (genre !== "") {
@@ -75,7 +67,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
         setImgClass("space");
         setCharacterImages(spaceCharacterImages);
       } else {
-        navigate("/")
+        navigate("/");
       }
     }
   }, [genre]);
@@ -85,7 +77,11 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
       mode: "cors",
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ genre: genre, character: character }),
+      body: JSON.stringify({
+        genre: genre,
+        character: character,
+        difficulty: difficulty,
+      }),
     }).then(async (response) => {
       let data = await response.json();
       setScenario(data.response.setting);
@@ -95,80 +91,20 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
     navigate("/action");
   };
 
-  return (
-    <>
-      {genre === "" ? (
-        <>
-          <Typography
-            className="choosegenre"
-            variant="h5"
-            align="center"
-            color="text.secondary"
-            position="left"
-            fontFamily={"Handjet, cursive"}
-            fontSize={40}
-            paragraph
-          >
-            Choose Genre
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "nowrap",
-              alignItems: "center",
-              width: "70vw",
-              height: "40vh",
-            }}
-          >
-            {genreImages.map((image) => (
-              <ImageButton
-                className="genreimages"
-                focusRipple
-                key={image.title}
-                onClick={giveGenreValue}
-                style={{
-                  width: image.width,
-                  height: "100%",
-                }}
-              >
-                <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-                <ImageBackdrop className="MuiImageBackdrop-root" />
-                <Image>
-                  <Typography
-                    className={`${image.title}-btn`}
-                    component="span"
-                    variant="subtitle1"
-                    color="yellow"
-                    fontSize={35}
-                    fontFamily={"Handjet, cursive"}
-                    sx={{
-                      position: "relative",
-                      p: 4,
-                      pt: 2,
-                      pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                    }}
-                  >
-                    {image.title}
-                    <ImageMarked className="MuiImageMarked-root" />
-                  </Typography>
-                </Image>
-              </ImageButton>
-            ))}
-          </Box>
-        </>
-      ) : (
+  if (genre === "") {
+    return (
       <>
         <Typography
-              className="choosegenre"
-              variant="h5"
-              align="center"
-              color="text.secondary"
-              position="left"
-              fontFamily={'Handjet, cursive'}
-              fontSize={40}
-              paragraph
-            >
-              Choose Your Character
+          className="choosegenre"
+          variant="h5"
+          align="center"
+          color="text.secondary"
+          position="left"
+          fontFamily={"Handjet, cursive"}
+          fontSize={40}
+          paragraph
+        >
+          Choose Genre
         </Typography>
         <Box
           sx={{
@@ -179,13 +115,12 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             height: "40vh",
           }}
         >
-          
-          {characterImages.map((image) => (
+          {genreImages.map((image) => (
             <ImageButton
-              className="characterimages"
+              className="genreimages"
               focusRipple
               key={image.title}
-              onClick={giveCharacterValue}
+              onClick={giveGenreValue}
               style={{
                 width: image.width,
                 height: "100%",
@@ -195,6 +130,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
               <ImageBackdrop className="MuiImageBackdrop-root" />
               <Image>
                 <Typography
+                  className={`${image.title}-btn`}
                   component="span"
                   variant="subtitle1"
                   color="yellow"
@@ -214,36 +150,34 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             </ImageButton>
           ))}
         </Box>
-        <Box
-          sx ={{  
-            display:"flex",
-            flexWrap:"wrap",
-            alignItems: "center",
-            flexDirection: "column",
-            justifyContent: "center"}}>
-          <Button
-              className="start-again-btn"
-              sx ={{
-                border: 1,
-                borderColor: "red",
-                borderRadius: "20px",
-                m: 5,
-                fontSize: "20px",              
-                align: "center",
-                fontFamily: "Handjet, cursive",
-                backgroundColor: "black",
-              }}
-              variant="text"
-              color="success"
-              onClick={giveGenreValue}
-            >
-              Start A New Game
-          </Button>
-        </Box>
       </>
-      )}
-    </>
-  );
+    );
+  }
+  if (character === "") {
+    return (
+      <>
+        <Character
+          characterImages={characterImages}
+          setCharacter={setCharacter}
+          genre={genre}
+          giveGenreValue={giveGenreValue}
+        ></Character>
+        <StartNewGame giveGenreValue={giveGenreValue}></StartNewGame>
+      </>
+    );
+  }
+  if (difficulty === "") {
+    return (
+      <>
+        <Difficulty
+          setDifficulty={setDifficulty}
+          genre={genre}
+          giveGenreValue={giveGenreValue}
+        ></Difficulty>
+        <StartNewGame giveGenreValue={giveGenreValue}></StartNewGame>
+      </>
+    );
+  }
 };
 
 export default Genre;
