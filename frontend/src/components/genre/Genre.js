@@ -175,35 +175,35 @@ const Genre = ({
     const difficultyTitle = event.target.innerText;
     if (genre === "Fantasy Adventure") {
       if (difficultyTitle === "Easy") {
-      setDifficulty("This is an easy level. The challenges you'll face are relatively simple and straightforward. There's a high chance of winning.");
+      setDifficulty("easy. There's a lower chance of a fatal action and a higher chance of winning.");
       }
       if (difficultyTitle === "Medium") {
-        setDifficulty("This is a medium level. You'll encounter moderate challenges that require careful decision-making. There's a good chance of winning.");
+        setDifficulty("medium. There's an equal chance of picking a fatal action or picking a winning action.");
       }
       if (difficultyTitle === "Hard") {
-        setDifficulty("This is a hard level. Be prepared for tough challenges that will test your skills and wit. There's a challenging but rewarding chance of winning.");
+        setDifficulty("hard. There's a higher chance of a fatal action and a lower chance of winning.");
       }
     }
     if (genre === "Detective Noir") {
       if (difficultyTitle === "Easy") {
-        setDifficulty("This is an easy level. The mysteries you'll solve are straightforward, and clues are easier to find. There's a high chance of solving the case");
+        setDifficulty("easy. There's a lower chance of a fatal action and a higher chance of winning.");
       }
       if (difficultyTitle === "Medium") {
-        setDifficulty("This is a medium level. The mysteries are more intricate, and your deductive skills will be put to the test. There's a solid chance of solving the case.");
+        setDifficulty("medium. There's an equal chance of picking a fatal action or picking a winning action.");
       }
       if (difficultyTitle === "Hard") {
-        setDifficulty("This is a hard level The mysteries are complex and require sharp observation and reasoning. There's a challenging but some chance of solving the case.");
+        setDifficulty("hard. There's a higher chance of a fatal action and a lower chance of winning.");
       }
     }
     if (genre === "Space Horror") {
       if (difficultyTitle === "Easy") {
-        setDifficulty("This is an easy level. Surviving the horrors of space will be less hard. There's a high chance of making it back to win.");
+        setDifficulty("easy. There's a low chance of a fatal action and a high chance of winning.");
       }
       if (difficultyTitle === "Medium") {
-        setDifficulty("This is a medium level. Space is dangerous, and your resourcefulness will be tested. There's a solid chance of overcoming the challenges.");
+        setDifficulty("medium. There's an equal chance of picking a fatal action or picking a winning action.");
       }
       if (difficultyTitle === "Hard") {
-        setDifficulty("This is a hard level. Space is merciless, and every decision counts. There's a challenging but heroic chance of making it through.");
+        setDifficulty("hard. There's a higher chance of a fatal action and a lower chance of winning.");
       }
     }
     
