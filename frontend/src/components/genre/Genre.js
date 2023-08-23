@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import ButtonBase from "@mui/material/ButtonBase";
+import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 import {
   ImageButton,
   ImageSrc,
@@ -39,8 +42,11 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   const [characterImages, setCharacterImages] = useState([]);
 
   const giveGenreValue = (e) => {
-    e.preventDefault();
-    setGenre(e.target.innerText);
+    if (e.target.innerText === "START A NEW GAME"){
+      setGenre("")
+    } else {
+      setGenre(e.target.innerText);
+    }
   };
 
   const giveCharacterValue = (event) => {
@@ -65,9 +71,11 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
       } else if (genre === "Detective Noir") {
         setImgClass("noir");
         setCharacterImages(noirCharacterImages);
-      } else {
+      } else if (genre === "Space Horror") {
         setImgClass("space");
         setCharacterImages(spaceCharacterImages);
+      } else {
+        navigate("/")
       }
     }
   }, [genre]);
@@ -149,63 +157,90 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
           </Box>
         </>
       ) : (
-        <>
-          <Typography
-            className="choosegenre"
-            variant="h5"
-            align="center"
-            color="text.secondary"
-            position="left"
-            fontFamily={"Handjet, cursive"}
-            fontSize={40}
-            paragraph
-          >
-            Choose Your Character
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "nowrap",
-              alignItems: "center",
-              width: "70vw",
-              height: "40vh",
-            }}
-          >
-            {characterImages.map((image) => (
-              <ImageButton
-                className="characterimages"
-                focusRipple
-                key={image.title}
-                onClick={giveCharacterValue}
-                style={{
-                  width: image.width,
-                  height: "100%",
-                }}
-              >
-                <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
-                <ImageBackdrop className="MuiImageBackdrop-root" />
-                <Image>
-                  <Typography
-                    component="span"
-                    variant="subtitle1"
-                    color="yellow"
-                    fontSize={35}
-                    fontFamily={"Handjet, cursive"}
-                    sx={{
-                      position: "relative",
-                      p: 4,
-                      pt: 2,
-                      pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-                    }}
-                  >
-                    {image.title}
-                    <ImageMarked className="MuiImageMarked-root" />
-                  </Typography>
-                </Image>
-              </ImageButton>
-            ))}
-          </Box>
-        </>
+      <>
+        <Typography
+              className="choosegenre"
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              position="left"
+              fontFamily={'Handjet, cursive'}
+              fontSize={40}
+              paragraph
+            >
+              Choose Your Character
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "nowrap",
+            alignItems: "center",
+            width: "70vw",
+            height: "40vh",
+          }}
+        >
+          
+          {characterImages.map((image) => (
+            <ImageButton
+              className="characterimages"
+              focusRipple
+              key={image.title}
+              onClick={giveCharacterValue}
+              style={{
+                width: image.width,
+                height: "100%",
+              }}
+            >
+              <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
+              <ImageBackdrop className="MuiImageBackdrop-root" />
+              <Image>
+                <Typography
+                  component="span"
+                  variant="subtitle1"
+                  color="yellow"
+                  fontSize={35}
+                  fontFamily={"Handjet, cursive"}
+                  sx={{
+                    position: "relative",
+                    p: 4,
+                    pt: 2,
+                    pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                  }}
+                >
+                  {image.title}
+                  <ImageMarked className="MuiImageMarked-root" />
+                </Typography>
+              </Image>
+            </ImageButton>
+          ))}
+        </Box>
+        <Box
+          sx ={{  
+            display:"flex",
+            flexWrap:"wrap",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "center"}}>
+          <Button
+              className="start-again-btn"
+              sx ={{
+                border: 1,
+                borderColor: "red",
+                borderRadius: "20px",
+                m: 5,
+                fontSize: "20px",              
+                align: "center",
+                fontFamily: "Handjet, cursive",
+                backgroundColor: "black",
+              }}
+              variant="text"
+              color="success"
+              onClick={giveGenreValue}
+            >
+              Start A New Game
+          </Button>
+        </Box>
+      </>
       )}
     </>
   );

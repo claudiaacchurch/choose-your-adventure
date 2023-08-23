@@ -14,6 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ```
    cd frontend
    npm i
+   npm install react-sound (might need to add --legacy-peer-deps)
 ```
 5. Create an API Key from OpenAI and store it as an enviroment variable:
   First create an .env file inside your api folder.
