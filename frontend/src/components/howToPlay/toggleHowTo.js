@@ -1,11 +1,8 @@
-import "./toggle.css";
 import * as React from "react";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { styled } from "@mui/material/styles";
 import "../app/App.css"
-import { alignProperty } from "@mui/material/styles/cssUtils";
 
 const ToggleHowToPlay = () => {
   const [isContentOpen, setContentOpen] = useState(false);

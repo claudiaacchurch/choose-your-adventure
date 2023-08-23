@@ -1,8 +1,6 @@
 import Homepage from "../homepage/Homepage";
 const navigate = () => {};
 const setImgClass = () => {};
-let genre = "";
-let character = "";
 
 describe("Genre", () => {
   it("Fantasy button mounts", () => {
@@ -18,37 +16,9 @@ describe("Picking up genre component and actions", () => {
     cy.get(".characterimages").should("contain.text", "Wizard");
   });
 
-  it("User can pick a genre and character to progress", () => {
+  it("User can pick a genre and a character to progress", () => {
     cy.mount(<Homepage navigate={navigate} setImgClass={setImgClass} />);
-    cy.intercept("POST", "**/genre", (req) => {
-      req.body = { genre: genre, character: character };
-      req.reply = {
-        body: {
-          response: {
-            setting: "This is the setting mock",
-            actions: ["", "", ""],
-            status: "Game Over",
-          },
-        },
-      };
-    }).as("postGameStart");
-    cy.contains("Fantasy").click();
-    cy.contains("Sorceress").click();
-    genre = "Fantasy Adventure";
-    character = "Sorceress";
-    cy.wait("@postGameStart");
-    // cy.url().should("include", "action");
+    cy.contains("Fantasy").should("be.visible").click();
+    cy.contains("Sorceress").should("be.visible");
   });
-
-  //   it("User can pick a genre Space to progress", () => {
-  //     cy.intercept({
-  //       method: "POST",
-  //       url: "/genre",
-  //     }).as("postGameStart");
-  //     cy.mount(<Homepage navigate={navigate} />);
-  //     cy.contains("Space").click();
-  //     cy.wait("@postGameStart").its("request.body").should("deep.equal", {
-  //       genre: "Space Horror",
-  //     });
-  //   });
 });

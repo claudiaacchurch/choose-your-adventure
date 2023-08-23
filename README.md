@@ -16,8 +16,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 3. Install npm to the frontend:
 
 ```
-   cd frontend
+
    npm install --legacy-peer-deps
+
 ```
 
 5. Create an API Key from OpenAI and store it as an enviroment variable:

@@ -56,7 +56,6 @@ const GameController = {
           content: JSON.stringify(response),
         };
         chatGPTMessages.push(chatResponse);
-        console.log(response);
         return res.status(200).json({ response: response });
       })
       .catch((err) => {
