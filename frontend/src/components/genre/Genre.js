@@ -83,6 +83,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
       setScenario(data.response.setting);
       setActions(data.response.actions);
     });
+
     navigate("/action");
   };
 
