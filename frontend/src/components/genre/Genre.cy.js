@@ -33,9 +33,9 @@ describe("Picking up genre component and actions", () => {
       };
     }).as("postGameStart");
     cy.contains("Fantasy").click();
-    cy.contains("Bard").click();
+    cy.contains("Sorceress").click();
     genre = "Fantasy Adventure";
-    character = "Bard";
+    character = "Sorceress";
     cy.wait("@postGameStart");
     // cy.url().should("include", "action");
   });
