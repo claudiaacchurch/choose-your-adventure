@@ -43,6 +43,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
 
   const giveGenreValue = (e) => {
     if (e.target.innerText === "START A NEW GAME") {
+      setCharacter("");
       setGenre("");
     } else {
       setGenre(e.target.innerText);
