@@ -1,4 +1,4 @@
-const chatacterConfigs = {
+const characterConfigs = {
     "Fantasy Adventure": {
         "Heroine": "fighter whose goal is to try and save someone.",
         "Wizard": "wizard whose goal is to try and find a magic item.",
@@ -16,4 +16,4 @@ const chatacterConfigs = {
     }
 };
 
-export default chatacterConfigs;
+export default characterConfigs;
