@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import ButtonBase from "@mui/material/ButtonBase";
 import { styled } from "@mui/material/styles";
+import Button from "@mui/material/Button";
 
 const genreImages = [
   {
@@ -147,8 +148,11 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
   const [characterImages, setCharacterImages] = useState([]);
 
   const giveGenreValue = (e) => {
-    e.preventDefault();
-    setGenre(e.target.innerText);
+    if (e.target.innerText === "START A NEW GAME"){
+      setGenre("")
+    } else {
+      setGenre(e.target.innerText);
+    }
   };
 
   const giveCharacterValue = (event) => {
@@ -211,9 +215,11 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
       } else if (genre === "Detective Noir") {
         setImgClass("noir");
         setCharacterImages(noirCharacterImages);
-      } else {
+      } else if (genre === "Space Horror") {
         setImgClass("space");
         setCharacterImages(spaceCharacterImages);
+      } else {
+        navigate("/")
       }
     }
   }, [genre]);
@@ -351,10 +357,36 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             </ImageButton>
           ))}
         </Box>
+        <Box
+          sx ={{  
+            display:"flex",
+            flexWrap:"wrap",
+            alignItems: "center",
+            flexDirection: "column",
+            justifyContent: "center"}}>
+          <Button
+              className="start-again-btn"
+              sx ={{
+                border: 1,
+                borderColor: "red",
+                borderRadius: "20px",
+                m: 5,
+                fontSize: "20px",              
+                align: "center",
+                fontFamily: "Handjet, cursive",
+                backgroundColor: "black",
+              }}
+              variant="text"
+              color="success"
+              onClick={giveGenreValue}
+            >
+              Start A New Game
+          </Button>
+        </Box>
       </>
       )}
     </>
   );
 };
-//hi
+
 export default Genre;
