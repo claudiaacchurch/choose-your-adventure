@@ -3,49 +3,58 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## To Get started:
+
 1. Install npm to the backend:
+
 ```
   cd api
   npm i
   npm install supertest
   npm install dotenv
 ```
+
 3. Install npm to the frontend:
+
 ```
    cd frontend
-   npm i
+   npm install --legacy-peer-deps
 ```
+
 5. Create an API Key from OpenAI and store it as an enviroment variable:
-  First create an .env file inside your api folder.
+   First create an .env file inside your api folder.
+
 ```
    cd api
    touch .env
 ```
-  Then store your key in that file as:
-  API_KEY = YOUR-KEY-GOES-HERE-NO-QUOTES-NEEDED
 
-*Make sure you have the latest version of nvm and node installed.
-``` 
-  npm install -g n 
+Then store your key in that file as:
+API_KEY = YOUR-KEY-GOES-HERE-NO-QUOTES-NEEDED
+
+\*Make sure you have the latest version of nvm and node installed.
+
+```
+  npm install -g n
   n latest
 ```
+
 You might need to install:
-(in the frontend) 
+(in the frontend)
+
 ```
-  npm install react-router-dom 
+  npm install react-router-dom
   npm install react-scripts@latest
 ```
+
 If you get a critical message try running:
+
 ```
 ~ npm audit fix --force
 ```
 
-
-
 ## Available Scripts
 
 In the project directory, you can run:
-
 
 ### `npm start`
 
