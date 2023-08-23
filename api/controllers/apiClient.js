@@ -15,7 +15,6 @@ const askGPT = async (messages) => {
   const response = chatCompletion.data.choices[0].message;
   const content = response.content;
   const parsedData = JSON.parse(content);
-
   return parsedData;
 };
 

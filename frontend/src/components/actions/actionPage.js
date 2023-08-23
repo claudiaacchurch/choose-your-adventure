@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import React, { useState, useEffect } from "react";
 import RingLoader from "react-spinners/RingLoader";
-import "../app/App.css"
+import "../app/App.css";
 import Typography from "@mui/material/Typography";
 import Sound from "react-sound";
 import FantasyMusic from "../../music/FantasyMusic.mp3";
@@ -10,10 +10,9 @@ import NoirMusic from "../../music/NoirMusic.mp3";
 import SpaceMusic from "../../music/SpaceMusic.mp3";
 import Slider from "@mui/material/Slider";
 import volumeImage from "./volumeImage.png";
-import messageLoad from "./loading_messages"
+import messageLoad from "./loading_messages";
 
-var randomElement = messageLoad[Math.floor(Math.random() * messageLoad.length)]; 
-
+var randomElement = messageLoad[Math.floor(Math.random() * messageLoad.length)];
 
 const ActionPage = ({
   setScenario,
@@ -24,14 +23,12 @@ const ActionPage = ({
   status,
   navigate,
   genre,
-  imgClass
+  imgClass,
 }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
   const [musicUrl, setMusicUrl] = useState("");
   const [musicVolume, setMusicVolume] = useState(20);
-  
-  console.log("action", selectedAction);
 
   const selectAction = (e) => {
     e.preventDefault();
@@ -40,7 +37,8 @@ const ActionPage = ({
 
   useEffect(() => {
     if (selectedAction !== "") {
-      randomElement = messageLoad[Math.floor(Math.random() * messageLoad.length)];  
+      randomElement =
+        messageLoad[Math.floor(Math.random() * messageLoad.length)];
       setLoading(true);
       actionApirequest();
     }
@@ -56,7 +54,7 @@ const ActionPage = ({
 
   const actionApirequest = async () => {
     fetch(`${process.env.REACT_APP_API_URL}/action`, {
-      mode: 'cors',
+      mode: "cors",
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: selectedAction }),
@@ -67,7 +65,6 @@ const ActionPage = ({
       setStatus(data.response.status);
       setLoading(false);
     });
-    
   };
 
   const startAgain = () => {
@@ -78,38 +75,39 @@ const ActionPage = ({
   };
 
   useEffect(() => {
-      if (imgClass === "fantasy") {
-        setMusicUrl(FantasyMusic);
-      } else if (imgClass === "noir") {
-        setMusicUrl(NoirMusic);
-      } else {
-        setMusicUrl(SpaceMusic);
-      }
-    }, [genre]);
-
-    let handleSliderChange = (event, newValue) => {
-      setMusicVolume(newValue);
+    if (imgClass === "fantasy") {
+      setMusicUrl(FantasyMusic);
+    } else if (imgClass === "noir") {
+      setMusicUrl(NoirMusic);
+    } else {
+      setMusicUrl(SpaceMusic);
     }
+  }, [genre]);
+
+  let handleSliderChange = (event, newValue) => {
+    setMusicVolume(newValue);
+  };
 
   return (
     <>
-        <Sound
-          url={musicUrl}
-          playStatus={Sound.status.PLAYING}
-          loop={true}
-          volume={musicVolume}
-          />
-        
+      <Sound
+        url={musicUrl}
+        playStatus={Sound.status.PLAYING}
+        loop={true}
+        volume={musicVolume}
+      />
+
       {loading ? (
-          <Box
+        <Box
           sx={{
-            height:" 100vh",
+            height: " 100vh",
             display: "flex",
             flexWrap: "nowrap",
             alignItems: "center",
             flexDirection: "column",
             justifyContent: "center",
-          }} >
+          }}
+        >
           <RingLoader
             color="yellow"
             loading={loading}
@@ -122,188 +120,207 @@ const ActionPage = ({
           />
 
           <Typography
-              mt="2%"
-              className="loadingText"
-              component="h4"
-              variant="h2"
-              align="center"
-              fontFamily={'Handjet, cursive'}
-              fontSize={30}
-              gutterBottom
-            >
-              {randomElement}
-            </Typography>
+            mt="2%"
+            className="loadingText"
+            component="h4"
+            variant="h2"
+            align="center"
+            fontFamily={"Handjet, cursive"}
+            fontSize={30}
+            gutterBottom
+          >
+            {randomElement}
+          </Typography>
         </Box>
       ) : (
         <>
-        <Box
-        className={imgClass}
-        sx={{
-          position:"relative",
-          height:" 100vh",
-          overflow:"hidden",
-          display: "flex",
-          flexWrap: "nowrap",
-          alignItems: "center",
-          flexDirection: "column",
-          justifyContent: "center",
-          fontFamily: "handjet, cursive",
-        }} >
-        <Box className="volume"
-          sx={{
-            position:"absolute",
-            top:'5%',
-            right:"80%",
-            height:" 100vh",
-            display: "inline-flex",
-          }}>
-        <img src={volumeImage} alt="volume" style={{width:25, height:25, color:"blue", paddingRight:"2%"}}/>
-        <Slider
-          size="small"
-          value={musicVolume} 
-          marks min={0} max={100}
-          onChange={handleSliderChange}
-          sx={{
-            width: 100,
-            color: 'blue',
-            alignItems: 'flex-start',
-          }}
-        />
-        </Box>
-        <div>
-            <Typography
-              mt="2%"
-              className="actionpagetitle"
-              component="h1"
-              variant="h2"
-              align="center"
-              fontFamily={'Handjet, cursive'}
-              fontSize={80}
-              gutterBottom
-            >
-              Infinity Trails
-            </Typography>
-          <div className="scenario"> 
-            <Typography
-              fontSize={25}              
-              align="center"
-              fontFamily={'Handjet, cursive'}
-              >{scenario}</Typography>
-          </div>
-          {status !== "Continue" ? (
-            <div>
-              {status === "Game Over" ? (
-                <p className="game-end">Game Over</p>
-              ) : (
-                <p className="game-end">Congratulations! You Won!</p>
-              )}
-            </div>
-  
-          ) : (
-            <Box className="actionbuttons" sx ={{  
-            display:"flex",
-            flexWrap:"wrap",
-            alignItems: "center",
-            flexDirection: "column",
-            justifyContent: "center"
-          }}>
-                <Button
-                  sx ={{
-                    width:"20vw",
-                    border: 1,
-                    borderColor: "blue",
-                    borderRadius: "20px",
-                    textTransform: "capitalize",
-                    m: 1,
-                    fontSize: "20px",              
-                    align: "center",
-                    fontFamily: "Handjet, cursive",
-                    backgroundColor: "black"
-                  }}
-                  className="action1-btn"
-                  variant="text"
-                  value={`${actions[0]}`}
-                  onClick={selectAction}
-                >
-                  {actions[0]}
-                </Button>
-                <Button
-                  sx ={{
-                    width:"20vw",
-                    border: 1,
-                    borderColor: "blue",
-                    borderRadius: "20px",
-                    textTransform: "capitalize",
-                    m: 1,
-                    fontSize: "20px",              
-                    align: "center",
-                    fontFamily: "Handjet, cursive",
-                    backgroundColor: "black"
-                  }}
-                  className="action2-btn"
-                  variant="text"
-                  value={`${actions[1]}`}
-                  onClick={selectAction}
-                >
-                  {actions[1]}
-                </Button>
-                <Button
-                  sx ={{
-                    width:"20vw",
-                    border: 1,
-                    borderColor: "blue",
-                    borderRadius: "20px",
-                    textTransform: "capitalize",
-                    m: 1,
-                    fontSize: "20px",              
-                    align: "center",
-                    fontFamily: "Handjet, cursive",
-                    backgroundColor: "black"
-                  }}
-                  className="action3-btn"
-                  variant="text"
-                  value={`${actions[2]}`}
-                  onClick={selectAction}
-                >
-                  
-                  {actions[2]}
-                </Button>
-            </Box>
-          )}
-          <Box sx ={{  
-            display:"flex",
-            flexWrap:"wrap",
-            alignItems: "center",
-            flexDirection: "column",
-            justifyContent: "center"}}>
-          <div>
-            <Button
-              className="start-again-btn"
-              sx ={{
-                border: 1,
-                borderColor: "red",
-                borderRadius: "20px",
-                m: 5,
-                fontSize: "20px",              
-                align: "center",
-                fontFamily: "Handjet, cursive",
-                backgroundColor: "black",
+          <Box
+            className={imgClass}
+            sx={{
+              position: "relative",
+              height: " 100vh",
+              overflow: "hidden",
+              display: "flex",
+              flexWrap: "nowrap",
+              alignItems: "center",
+              flexDirection: "column",
+              justifyContent: "center",
+              fontFamily: "handjet, cursive",
+            }}
+          >
+            <Box
+              className="volume"
+              sx={{
+                position: "absolute",
+                top: "5%",
+                right: "80%",
+                height: " 100vh",
+                display: "inline-flex",
               }}
-              variant="text"
-              color="success"
-              onClick={startAgain}
             >
-              Start A New Game
-            </Button>
-          </div>
+              <img
+                src={volumeImage}
+                alt="volume"
+                style={{
+                  width: 25,
+                  height: 25,
+                  color: "blue",
+                  paddingRight: "2%",
+                }}
+              />
+              <Slider
+                size="small"
+                value={musicVolume}
+                marks
+                min={0}
+                max={100}
+                onChange={handleSliderChange}
+                sx={{
+                  width: 100,
+                  color: "blue",
+                  alignItems: "flex-start",
+                }}
+              />
+            </Box>
+            <div>
+              <Typography
+                mt="2%"
+                className="actionpagetitle"
+                component="h1"
+                variant="h2"
+                align="center"
+                fontFamily={"Handjet, cursive"}
+                fontSize={80}
+                gutterBottom
+              >
+                Infinity Trails
+              </Typography>
+              <div className="scenario">
+                <Typography
+                  fontSize={25}
+                  align="center"
+                  fontFamily={"Handjet, cursive"}
+                >
+                  {scenario}
+                </Typography>
+              </div>
+              {status !== "Continue" ? (
+                <div>
+                  {status === "Game Over" ? (
+                    <p className="game-end">Game Over</p>
+                  ) : (
+                    <p className="game-end">Congratulations! You Won!</p>
+                  )}
+                </div>
+              ) : (
+                <Box
+                  className="actionbuttons"
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Button
+                    sx={{
+                      width: "20vw",
+                      border: 1,
+                      borderColor: "blue",
+                      borderRadius: "20px",
+                      textTransform: "capitalize",
+                      m: 1,
+                      fontSize: "20px",
+                      align: "center",
+                      fontFamily: "Handjet, cursive",
+                      backgroundColor: "black",
+                    }}
+                    className="action1-btn"
+                    variant="text"
+                    value={`${actions[0]}`}
+                    onClick={selectAction}
+                  >
+                    {actions[0]}
+                  </Button>
+                  <Button
+                    sx={{
+                      width: "20vw",
+                      border: 1,
+                      borderColor: "blue",
+                      borderRadius: "20px",
+                      textTransform: "capitalize",
+                      m: 1,
+                      fontSize: "20px",
+                      align: "center",
+                      fontFamily: "Handjet, cursive",
+                      backgroundColor: "black",
+                    }}
+                    className="action2-btn"
+                    variant="text"
+                    value={`${actions[1]}`}
+                    onClick={selectAction}
+                  >
+                    {actions[1]}
+                  </Button>
+                  <Button
+                    sx={{
+                      width: "20vw",
+                      border: 1,
+                      borderColor: "blue",
+                      borderRadius: "20px",
+                      textTransform: "capitalize",
+                      m: 1,
+                      fontSize: "20px",
+                      align: "center",
+                      fontFamily: "Handjet, cursive",
+                      backgroundColor: "black",
+                    }}
+                    className="action3-btn"
+                    variant="text"
+                    value={`${actions[2]}`}
+                    onClick={selectAction}
+                  >
+                    {actions[2]}
+                  </Button>
+                </Box>
+              )}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+              >
+                <div>
+                  <Button
+                    className="start-again-btn"
+                    sx={{
+                      border: 1,
+                      borderColor: "red",
+                      borderRadius: "20px",
+                      m: 5,
+                      fontSize: "20px",
+                      align: "center",
+                      fontFamily: "Handjet, cursive",
+                      backgroundColor: "black",
+                    }}
+                    variant="text"
+                    color="success"
+                    onClick={startAgain}
+                  >
+                    Start A New Game
+                  </Button>
+                </div>
+              </Box>
+            </div>
           </Box>
-        </div>
-        </Box>
-      </>  
+        </>
       )}
-      </>
+    </>
   );
 };
 
 export default ActionPage;
-
