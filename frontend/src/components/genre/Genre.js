@@ -102,8 +102,10 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
           color="text.secondary"
           position="left"
           fontFamily={"Handjet, cursive"}
-          fontSize={40}
           paragraph
+          sx = {{
+            fontSize:{xs:25, sm:30, md:40},
+          }}
         >
           Choose Genre
         </Typography>
@@ -112,8 +114,8 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
             display: "flex",
             flexWrap: "nowrap",
             alignItems: "center",
-            width: "70vw",
-            height: "40vh",
+            width: {xs: "90vw", sm:"90vw", md:"70vw"},
+          height: {xs: "20vh", sm:"30vh", md:"40vh"},
           }}
         >
           {genreImages.map((image) => (
@@ -135,9 +137,10 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
                   component="span"
                   variant="subtitle1"
                   color="yellow"
-                  fontSize={35}
+            
                   fontFamily={"Handjet, cursive"}
                   sx={{
+                    fontSize:{xs:20, sm:25, md:35},
                     position: "relative",
                     p: 4,
                     pt: 2,

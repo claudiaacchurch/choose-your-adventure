@@ -93,8 +93,10 @@ const Difficulty = ({ setDifficulty, genre, giveGenreValue }) => {
         color="text.secondary"
         position="left"
         fontFamily={"Handjet, cursive"}
-        fontSize={40}
         paragraph
+        sx= {{
+          fontSize:{xs:25, sm:30, md:40},
+        }}
       >
         Choose Level of Difficulty
       </Typography>
@@ -104,8 +106,8 @@ const Difficulty = ({ setDifficulty, genre, giveGenreValue }) => {
           display: "flex",
           flexWrap: "nowrap",
           alignItems: "center",
-          width: "70vw",
-          height: "40vh",
+          width: {xs: "90vw", sm:"90vw", md:"70vw"},
+          height: {xs: "20vh", sm:"30vh", md:"40vh"},
         }}
       >
         {difficultyImages.map((image) => (
@@ -126,9 +128,9 @@ const Difficulty = ({ setDifficulty, genre, giveGenreValue }) => {
                 component="span"
                 variant="subtitle1"
                 color="yellow"
-                fontSize={35}
                 fontFamily={"Handjet, cursive"}
                 sx={{
+                  fontSize:{xs:20, sm:25, md:35},
                   position: "relative",
                   p: 4,
                   pt: 2,

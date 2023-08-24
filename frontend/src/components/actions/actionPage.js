@@ -134,20 +134,18 @@ const ActionPage = ({
         </Box>
       ) : (
         <>
-          <Box
-            className={imgClass}
-            sx={{
-              position: "relative",
-              height: " 100vh",
-              overflow: "hidden",
-              display: "flex",
-              flexWrap: "nowrap",
-              alignItems: "center",
-              flexDirection: "column",
-              justifyContent: "center",
-              fontFamily: "handjet, cursive",
-            }}
-          >
+         <Box
+  className={imgClass}
+  sx={{
+    position: "relative",
+    height: { xs: "auto", sm: "auto", md:"100vh" },
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    justifyContent: "center",
+    fontFamily: "handjet, cursive",
+  }}
+>
             <Box
               className="volume"
               sx={{
@@ -190,16 +188,20 @@ const ActionPage = ({
                 variant="h2"
                 align="center"
                 fontFamily={"Handjet, cursive"}
-                fontSize={80}
                 gutterBottom
+                sx = {{
+                  fontSize:{xs: 50, sm:60, md:80},
+                }}
               >
                 Infinity Trails
               </Typography>
               <div className="scenario">
                 <Typography
-                  fontSize={25}
                   align="center"
                   fontFamily={"Handjet, cursive"}
+                  sx = {{
+                    fontSize:{xs: 20, sm:25, md:25},
+                  }}
                 >
                   {scenario}
                 </Typography>
@@ -231,7 +233,7 @@ const ActionPage = ({
                       borderRadius: "20px",
                       textTransform: "capitalize",
                       m: 1,
-                      fontSize: "20px",
+                      fontSize:{xs: 15, sm:20, md:20},
                       align: "center",
                       fontFamily: "Handjet, cursive",
                       backgroundColor: "black",
@@ -251,7 +253,7 @@ const ActionPage = ({
                       borderRadius: "20px",
                       textTransform: "capitalize",
                       m: 1,
-                      fontSize: "20px",
+                      fontSize:{xs: 15, sm:20, md:20},
                       align: "center",
                       fontFamily: "Handjet, cursive",
                       backgroundColor: "black",
@@ -271,7 +273,7 @@ const ActionPage = ({
                       borderRadius: "20px",
                       textTransform: "capitalize",
                       m: 1,
-                      fontSize: "20px",
+                      fontSize:{xs: 15, sm:20, md:20},
                       align: "center",
                       fontFamily: "Handjet, cursive",
                       backgroundColor: "black",
@@ -302,7 +304,7 @@ const ActionPage = ({
                       borderColor: "red",
                       borderRadius: "20px",
                       m: 5,
-                      fontSize: "20px",
+                      fontSize:{xs: 15, sm:18, md:20},
                       align: "center",
                       fontFamily: "Handjet, cursive",
                       backgroundColor: "black",

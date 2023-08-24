@@ -11,7 +11,7 @@ const ToggleHowToPlay = () => {
   };
   return (
     <div className="ToggleHowToPlay">
-      <Button variant="text" className="toggleButton" onClick={toggleContent} sx={{ fontSize:25,
+      <Button variant="text" className="toggleButton" onClick={toggleContent} sx={{ fontSize:{xs: 15, sm:20, md:25},
                   fontFamily:'Handjet, cursive'}}>
         {isContentOpen ? "Close" : "How to Play"}
       </Button>
@@ -19,10 +19,13 @@ const ToggleHowToPlay = () => {
         <Typography
         className="content"
         color="inherit"
-        fontSize={20}
         fontFamily={'Handjet, cursive'}
-        marginLeft={28}
-        marginRight={28}
+          sx = {{
+            marginLeft:{xs: 5, sm:10, md:28},
+            marginRight:{xs: 5, sm:10, md:28},
+            fontSize:{xs: 15, sm:20, md:20},
+            mb:{xs: 5, sm:5, md:0},
+          }}
         >
           <h4>
             {" "}

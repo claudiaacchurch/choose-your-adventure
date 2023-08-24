@@ -20,7 +20,7 @@ const StartNewGame = ({ giveGenreValue }) => {
           borderColor: "red",
           borderRadius: "20px",
           m: 5,
-          fontSize: "20px",
+          fontSize:{xs: 15, sm:18, md:20},
           align: "center",
           fontFamily: "Handjet, cursive",
           backgroundColor: "black",
