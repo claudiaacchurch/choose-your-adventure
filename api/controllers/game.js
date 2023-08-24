@@ -1,6 +1,6 @@
 const askGPT = require("./apiClient");
 
-let sessions = {};  // This will hold the entire conversation history for each game session.
+let sessions = {}; 
 
 const GameController = {
   StartGame: async (req, res) => {
@@ -8,7 +8,7 @@ const GameController = {
     if (!sessions[sessionID]) {
       sessions[sessionID] = [];
     }
-    sessions[sessionID].length = 0;  // Clearing the history for a new game in this session.
+    sessions[sessionID].length = 0; 
 
     const genre = req.body.genre;
     const character = req.body.character;
