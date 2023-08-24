@@ -10,6 +10,7 @@ const App = () => {
   const [actions, setActions] = useState([]);
   const [status, setStatus] = useState("Continue");
   const [imgClass, setImgClass] = useState("");
+  const [sessionID, setSessionID] = useState("");
   const navigate = useNavigate();
 
   return (
@@ -17,7 +18,7 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Homepage setScenario={setScenario} setActions={setActions} navigate={navigate} setImgClass={setImgClass}/>}
+            element={<Homepage setScenario={setScenario} setActions={setActions} navigate={navigate} setImgClass={setImgClass} sessionID={sessionID} setSessionID={setSessionID}/>}
           />
           <Route
             path="/genre"
@@ -25,7 +26,7 @@ const App = () => {
           />
           <Route
             path="/action"
-            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} status={status} imgClass={imgClass} navigate={navigate} />}
+            element={<ActionPage scenario={scenario} actions={actions} setScenario={setScenario} setActions={setActions} setStatus={setStatus} status={status} imgClass={imgClass} navigate={navigate} sessionID={sessionID}/>}
           />
         </Routes>
 
