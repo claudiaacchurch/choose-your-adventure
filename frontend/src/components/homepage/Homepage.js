@@ -32,7 +32,7 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
         <Box
           sx={{
             pt: 8,
-            pb: 6,
+            pb: 1,
           }}
         >
           <Container maxWidth="sm">
@@ -42,8 +42,10 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
               variant="h2"
               align="center"
               fontFamily={'Handjet, cursive'}
-              fontSize={80}
               gutterBottom
+              sx = {{
+                fontSize:{xs: 50, sm:60, md:80},
+              }}
             >
               Infinity Trails
             </Typography>
@@ -53,8 +55,10 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
               align="center"
               color="text.secondary"
               fontFamily={'Handjet, cursive'}
-              fontSize={40}
               paragraph
+              sx = {{
+                fontSize:{xs: 25, sm:30, md:40},
+              }}
             >
               Welcome to your next adventure
             </Typography>
