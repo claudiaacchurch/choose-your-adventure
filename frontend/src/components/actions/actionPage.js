@@ -138,7 +138,7 @@ const ActionPage = ({
   className={imgClass}
   sx={{
     position: "relative",
-    height: { xs: "auto", sm: "auto", md:"100vh" }, // Make height auto on xs screens
+    height: { xs: "auto", sm: "auto", md:"100vh" },
     display: "flex",
     alignItems: "center",
     flexDirection: "column",
