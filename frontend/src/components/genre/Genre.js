@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
 import {
   ImageButton,
   ImageSrc,
@@ -35,11 +36,12 @@ const genreImages = [
   },
 ];
 
-const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
+const Genre = ({ navigate, setScenario, setActions, setImgClass, sessionID, setSessionID}) => {
   const [genre, setGenre] = useState("");
   const [character, setCharacter] = useState("");
   const [characterImages, setCharacterImages] = useState([]);
   const [difficulty, setDifficulty] = useState("");
+
 
   const giveGenreValue = (e) => {
     if (e.target.innerText === "START A NEW GAME") {
@@ -55,6 +57,8 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
       apirequest();
     }
   }, [difficulty]);
+
+  
 
   useEffect(() => {
     if (genre !== "") {
@@ -73,7 +77,13 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
     }
   }, [genre]);
 
+  const generateSessionID = () => {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  };
+
   const apirequest = async () => {
+    const newSessionID = generateSessionID();
+    setSessionID(newSessionID);
     fetch(`${process.env.REACT_APP_API_URL}/genre`, {
       mode: "cors",
       method: "post",
@@ -82,6 +92,7 @@ const Genre = ({ navigate, setScenario, setActions, setImgClass }) => {
         genre: genre,
         character: character,
         difficulty: difficulty,
+        sessionID: newSessionID
       }),
     }).then(async (response) => {
       let data = await response.json();

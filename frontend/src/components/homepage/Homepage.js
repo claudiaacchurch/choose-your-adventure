@@ -22,7 +22,7 @@ const defaultTheme = createTheme({
 });
 
 
-const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
+const Homepage = ({ setScenario, setActions, navigate, setImgClass, setSessionID, sessionID }) => {
   return (
     <body>
     <ThemeProvider theme={defaultTheme}>
@@ -74,6 +74,8 @@ const Homepage = ({ setScenario, setActions, navigate, setImgClass }) => {
                   setActions={setActions}
                   navigate={navigate}
                   setImgClass={setImgClass}
+                  sessionID={sessionID} 
+                  setSessionID={setSessionID}
                 />
               </div>
             </Stack>

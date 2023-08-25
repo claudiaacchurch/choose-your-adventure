@@ -24,6 +24,7 @@ const ActionPage = ({
   navigate,
   genre,
   imgClass,
+  sessionID
 }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ const ActionPage = ({
       mode: "cors",
       method: "post",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: selectedAction }),
+      body: JSON.stringify({ action: selectedAction, sessionID: sessionID}),
     }).then(async (response) => {
       let data = await response.json();
       setScenario(data.response.setting);

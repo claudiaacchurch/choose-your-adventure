@@ -1,10 +1,15 @@
 const askGPT = require("./apiClient");
 
-let chatGPTMessages = [];
+let sessions = {}; 
 
 const GameController = {
   StartGame: async (req, res) => {
-    chatGPTMessages.length = 0;
+    const sessionID = req.body.sessionID;
+    if (!sessions[sessionID]) {
+      sessions[sessionID] = [];
+    }
+    sessions[sessionID].length = 0; 
+
     const genre = req.body.genre;
     const character = req.body.character;
     const difficulty = req.body.difficulty;
@@ -29,42 +34,51 @@ const GameController = {
         // `One of these three actions is fatal for every individual round. Never add other explanations. Don't refer to yourself.` +
         `Your responses are just in JSON format like this example, where status is either "Game Over", "Game Won" or "Continue": \n\n###\n\n {"setting":"setting description", "actions":["action 1", "action 2", "action 3"], "status":"status"}\n\n###\n\n`,
     };
-    chatGPTMessages.push(initialMessage);
-    askGPT(chatGPTMessages)
-      .then((response) => {
-        const chatResponse = {
-          role: "assistant",
-          content: JSON.stringify(response),
-        };
-        chatGPTMessages.push(chatResponse);
-        return res.status(200).json({ response: response });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    sessions[sessionID].push(initialMessage);
+
+    try {
+      const response = await askGPT(sessions[sessionID]);
+      const chatResponse = {
+        role: "assistant",
+        content: JSON.stringify(response),
+      };
+      sessions[sessionID].push(chatResponse);
+      console.log("SESSIONS", sessions)
+      return res.status(200).json({ response: response });
+    } catch (err) {
+      console.error(err);
+    }
   },
 
   MakeAction: async (req, res) => {
+    const sessionID = req.body.sessionID;
     const action = req.body.action;
+    
+    if (!sessions[sessionID]) {
+      return res.status(400).json({ error: 'Invalid session ID' });
+    }
+    
     const nextStep = {
       role: "user",
       content:
         action +
         ". Respond in JSON format like this example, where status is either 'Game Over', 'Game Won' or 'Continue': \n\n###\n\n {'setting':'setting description', 'actions':['action 1', 'action 2', 'action 3'], 'status': 'status'}\n\n###\n\n`,",
     };
-    chatGPTMessages.push(nextStep);
-    askGPT(chatGPTMessages)
-      .then((response) => {
-        const chatResponse = {
-          role: "assistant",
-          content: JSON.stringify(response),
-        };
-        chatGPTMessages.push(chatResponse);
-        return res.status(200).json({ response: response });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+
+    sessions[sessionID].push(nextStep);
+
+    try {
+      const response = await askGPT(sessions[sessionID]);
+      const chatResponse = {
+        role: "assistant",
+        content: JSON.stringify(response),
+      };
+      sessions[sessionID].push(chatResponse);
+      console.log("ACTION SESSION", sessions)
+      return res.status(200).json({ response: response });
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 
