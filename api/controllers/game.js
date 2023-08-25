@@ -44,10 +44,9 @@ const GameController = {
       };
       sessions[sessionID].push(chatResponse);
       console.log("SESSIONS", sessions)
-      res.status(200).json({ response: response });
+      return res.status(200).json({ response: response });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "An error occurred." });
     }
   },
 
@@ -76,10 +75,9 @@ const GameController = {
       };
       sessions[sessionID].push(chatResponse);
       console.log("ACTION SESSION", sessions)
-      res.status(200).json({ response: response });
+      return res.status(200).json({ response: response });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "An error occurred." });
     }
   },
 };
